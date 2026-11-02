@@ -1,0 +1,8 @@
+# Normaliza finales de línea para que el repo no genere ruido entre Windows y Linux
+* text=auto
+
+*.md   text eol=lf
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.json text eol=lf

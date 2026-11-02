@@ -1,0 +1,28 @@
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Entornos y build
+.env
+.env.*
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+
+# Artefactos de pruebas locales
+*.log
+tmp/
+out/
+
+# Claves y certificados (nunca en el repo)
+*.pem
+*.key
+*.p12
