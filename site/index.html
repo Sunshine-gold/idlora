@@ -10,25 +10,25 @@
 <body>
 
 <header class="topbar">
-  <div class="brand">
-    <span class="logo">◈</span> IDLORA
+  <a class="brand" href="#vision" aria-label="IDLORA — ir al inicio">
+    <span class="logo" aria-hidden="true">◈</span> IDLORA
     <span class="tag">v0.1 · Kraenns</span>
-  </div>
-  <nav id="tabs">
-    <button data-view="vision" class="active">Visión</button>
-    <button data-view="arch">Arquitectura</button>
-    <button data-view="flow">Flujo</button>
-    <button data-view="net">Transporte</button>
-    <button data-view="compat">Compatibilidad</button>
-    <button data-view="sec">Seguridad</button>
-    <button data-view="road">Roadmap</button>
+  </a>
+  <nav class="nav" aria-label="Secciones">
+    <a href="#vision" class="active" aria-current="location">Visión</a>
+    <a href="#arquitectura">Arquitectura</a>
+    <a href="#flujo">Flujo</a>
+    <a href="#transporte">Transporte</a>
+    <a href="#compatibilidad">Compatible</a>
+    <a href="#seguridad">Seguridad</a>
+    <a href="#roadmap">Roadmap</a>
   </nav>
 </header>
 
 <main>
 
   <!-- ================= VISIÓN ================= -->
-  <section id="vision" class="view active">
+  <section id="vision" class="section">
     <p class="eyebrow">Proyecto · hardware olvidado</p>
     <div class="hero">
       <div>
@@ -156,13 +156,12 @@
     </div>
 
     <p class="small dim" style="margin-top:22px">
-      Usá las flechas <span class="kbd">←</span> <span class="kbd">→</span> o las pestañas de arriba.
-      Cada bloque con borde es clickeable y abre su ficha técnica.
+      Recorré el documento o usá la barra de arriba. Cada bloque con borde abre su ficha técnica.
     </p>
   </section>
 
   <!-- ================= ARQUITECTURA ================= -->
-  <section id="arch" class="view">
+  <section id="arquitectura" class="section">
     <div class="section-head">
       <p class="eyebrow">Arquitectura</p>
       <h2>Tres capas, un contrato</h2>
@@ -274,7 +273,7 @@
   </section>
 
   <!-- ================= FLUJO ================= -->
-  <section id="flow" class="view">
+  <section id="flujo" class="section">
     <div class="section-head">
       <p class="eyebrow">Caso concreto</p>
       <h2>«Vigilá la GPU y avisame si se pasa de 83 °C»</h2>
@@ -352,7 +351,7 @@
   </section>
 
   <!-- ================= TRANSPORTE ================= -->
-  <section id="net" class="view">
+  <section id="transporte" class="section">
     <div class="section-head">
       <p class="eyebrow">Transporte</p>
       <h2>USB primero, red cuando haga falta</h2>
@@ -398,7 +397,7 @@
   </section>
 
   <!-- ================= COMPATIBILIDAD ================= -->
-  <section id="compat" class="view">
+  <section id="compatibilidad" class="section">
     <div class="section-head">
       <p class="eyebrow">Catálogo</p>
       <h2>Ningún dispositivo es «compatible» sin evidencia</h2>
@@ -491,7 +490,7 @@
   </section>
 
   <!-- ================= SEGURIDAD ================= -->
-  <section id="sec" class="view">
+  <section id="seguridad" class="section">
     <div class="section-head">
       <p class="eyebrow">Seguridad y recuperación</p>
       <h2>Si no se puede volver atrás, no entra al proyecto</h2>
@@ -559,7 +558,7 @@
   </section>
 
   <!-- ================= ROADMAP ================= -->
-  <section id="road" class="view">
+  <section id="roadmap" class="section">
     <div class="section-head">
       <p class="eyebrow">Roadmap</p>
       <h2>Seis fases, cada una con su criterio de salida</h2>

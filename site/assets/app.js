@@ -355,34 +355,52 @@
     }
   };
 
-  /* ---------- pestañas ---------- */
-  const tabs = Array.from(document.querySelectorAll("#tabs button"));
-  const views = Array.from(document.querySelectorAll(".view"));
+  /* ---------- navegación de documento ---------- */
+  const nav = document.querySelector(".nav");
+  const navLinks = nav ? Array.from(nav.querySelectorAll('a[href^="#"]')) : [];
+  const sections = navLinks
+    .map(a => document.querySelector(a.getAttribute("href")))
+    .filter(Boolean);
 
-  function show(id, push) {
-    const target = document.getElementById(id);
-    if (!target) return;
-    views.forEach(v => v.classList.toggle("active", v === target));
-    tabs.forEach(t => t.classList.toggle("active", t.dataset.view === id));
-    if (push !== false) {
-      try { history.replaceState(null, "", "#" + id); } catch (e) { /* file:// sin soporte */ }
-    }
-    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
-    closePanel();
+  function mark(id) {
+    navLinks.forEach(a => {
+      const on = a.getAttribute("href") === "#" + id;
+      a.classList.toggle("active", on);
+      if (on) a.setAttribute("aria-current", "location");
+      else a.removeAttribute("aria-current");
+    });
   }
 
-  tabs.forEach(t => t.addEventListener("click", () => show(t.dataset.view)));
+  if (sections.length) {
+    if ("IntersectionObserver" in window) {
+      const visible = new Set();
+      const spy = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) visible.add(e.target.id);
+          else visible.delete(e.target.id);
+        });
+        const current = sections.filter(s => visible.has(s.id)).pop();
+        if (current) mark(current.id);
+      }, { rootMargin: "-84px 0px -62% 0px", threshold: 0 });
+      sections.forEach(s => spy.observe(s));
+    } else {
+      const onScroll = () => {
+        const y = window.scrollY + 96;
+        const current = sections.filter(s => s.offsetTop <= y).pop();
+        if (current) mark(current.id);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    navLinks.forEach(a => {
+      a.addEventListener("click", () => mark(a.getAttribute("href").slice(1)));
+    });
+  }
 
   document.addEventListener("keydown", e => {
-    if (e.target.matches("input, textarea")) return;
-    const i = tabs.findIndex(t => t.classList.contains("active"));
-    if (e.key === "ArrowRight" && i < tabs.length - 1) { show(tabs[i + 1].dataset.view); }
-    if (e.key === "ArrowLeft" && i > 0) { show(tabs[i - 1].dataset.view); }
     if (e.key === "Escape") closePanel();
   });
-
-  const initial = (location.hash || "").replace("#", "");
-  if (initial && document.getElementById(initial)) show(initial, false);
 
   /* ---------- panel de detalle ---------- */
   const panel = document.getElementById("panel");
