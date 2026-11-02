@@ -1,6 +1,8 @@
-# RELIC
+# IDLORA
 
 **Convertir hardware olvidado en tecnología útil.**
+
+*Un proyecto de Kraenns.*
 
 Infraestructura abierta para reutilizar celulares, tablets y SBC viejos como nodos de cómputo
 autónomos que trabajan junto a nuestras PCs.
@@ -21,7 +23,7 @@ muchos servidores que alguna vez fueron tope de gama.
 Hoy ese hardware se descarta o se usa como accesorio: pantalla secundaria, control remoto, app de
 Android que depende de la PC encendida.
 
-RELIC propone otra cosa: **darle al dispositivo un sistema propio, tareas propias y criterio propio.**
+IDLORA propone otra cosa: **darle al dispositivo un sistema propio, tareas propias y criterio propio.**
 Que monitoree, procese, almacene o automatice sin gastar recursos de Windows, y que siga trabajando
 cuando la PC ya no está.
 
@@ -51,13 +53,13 @@ Tres capas, un contrato. Ninguna capa conoce los detalles internos de la otra.
 │  1. CONTROL (PC)         │        │  2. TRANSPORTE           │        │  3. EJECUCIÓN (nodo)     │
 │                          │        │                          │        │                          │
 │  · Agente local          │ tarea  │  · USB (adb reverse)     │ tarea  │  · Sistema base          │
-│  · Política de permisos  │ ─────▶ │  · Red local (TLS mutuo) │ ─────▶ │  · Núcleo (relic-core)   │
+│  · Política de permisos  │ ─────▶ │  · Red local (TLS mutuo) │ ─────▶ │  · Núcleo (idlora-core)   │
 │  · Auditoría             │ ◀───── │  · Cola offline          │ ◀───── │  · Adaptador de hardware │
 │                          │result. │                          │result. │  · Módulos               │
 └──────────────────────────┘        └──────────────────────────┘        └──────────────────────────┘
 ```
 
-### 3.1 Núcleo (`relic-core`)
+### 3.1 Núcleo (`idlora-core`)
 
 El mismo código en todos los dispositivos. Recibe una tarea, verifica quién la firmó, la ejecuta,
 la mide y devuelve el resultado. No sabe nada específico de ningún teléfono.
@@ -247,8 +249,11 @@ Publicar resultados negativos también es parte del proyecto.
 ## 12. Estructura del repositorio
 
 ```
-relic/
+idlora/
 ├── README.md              ← este documento
+├── CONTRIBUTING.md
+├── subir.ps1              ← publica el repo en GitHub (privado por defecto)
+├── SUBIR.cmd              ← doble click para el mismo script
 ├── site/                  ← presentación interactiva (abre offline)
 │   ├── index.html
 │   └── assets/
@@ -285,7 +290,30 @@ Navegación: pestañas arriba, flechas `←` `→`, y cada bloque con borde abre
 
 ---
 
-## 14. Estado del proyecto
+## 14. Cómo publicarlo
+
+Doble click en `SUBIR.cmd`, o desde una terminal:
+
+```powershell
+.\subir.ps1
+```
+
+Hace todo: verifica el repo, crea el repositorio privado en tu cuenta y sube la rama.
+Si `gh` no está logueado, te dice exactamente qué ejecutar (`gh auth login`) y no toca nada.
+
+Opciones: `-Nombre idlora` para elegir el nombre, `-Publico` si alguna vez lo querés abierto.
+
+**Ojo con el repo privado:** GitHub no renderiza el HTML adentro del repo. Para que alguien vea la
+presentación, tiene que abrir el repo con `github.dev` (tecla `.`), o tener Pages (requiere Pro), o
+recibir la carpeta y abrir `site/index.html`. Agregar colaborador:
+
+```powershell
+gh api -X PUT repos/Kraenns/idlora/collaborators/USUARIO -f permission=push
+```
+
+---
+
+## 15. Estado del proyecto
 
 **Concepto documentado.** No hay código todavía. Lo que sigue es la fase 0: núcleo mínimo, agente,
 cola y una tarea que sobreviva al apagado de la PC.

@@ -6,7 +6,7 @@
  PC (control)              Transporte               Dispositivo (ejecución)
 ┌───────────────┐        ┌──────────────┐        ┌──────────────────────┐
 │ Agente        │ tarea  │ USB          │ tarea  │ Sistema base         │
-│ Permisos      │ ─────▶ │ Red local    │ ─────▶ │ Núcleo (relic-core)  │
+│ Permisos      │ ─────▶ │ Red local    │ ─────▶ │ Núcleo (idlora-core)  │
 │ Auditoría     │ ◀───── │ Cola offline │ ◀───── │ Adaptador  ─ Módulos │
 └───────────────┘ result └──────────────┘ result └──────────────────────┘
 ```
@@ -33,7 +33,7 @@ API mínima y declarada por capacidades: no es un servidor abierto y no acepta c
 
 Si el agente se detiene, los nodos siguen trabajando con lo que ya tienen.
 
-### Núcleo (`relic-core`)
+### Núcleo (`idlora-core`)
 
 El mismo binario/paquete en todos los dispositivos soportados.
 

@@ -12,7 +12,7 @@ app de Android que depende de que Windows esté encendido.
 
 La pregunta habitual es: *¿cómo uso el teléfono desde la PC?*
 
-RELIC pregunta otra cosa: *¿qué puede hacer el teléfono por sí solo, y cómo se coordina con la PC
+IDLORA pregunta otra cosa: *¿qué puede hacer el teléfono por sí solo, y cómo se coordina con la PC
 sin depender de ella?*
 
 Eso cambia el diseño completo:

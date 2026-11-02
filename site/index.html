@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RELIC â€” convertir hardware olvidado en tecnologÃ­a Ãºtil</title>
-<meta name="description" content="Infraestructura abierta para reutilizar celulares, tablets y SBC viejos como nodos de cÃ³mputo autÃ³nomos.">
+<title>IDLORA — convertir hardware olvidado en tecnología útil</title>
+<meta name="description" content="Infraestructura abierta para reutilizar celulares, tablets y SBC viejos como nodos de cómputo autónomos.">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
 <header class="topbar">
   <div class="brand">
-    <span class="logo">â—ˆ</span> RELIC
-    <span class="tag">v0.1 Â· concepto</span>
+    <span class="logo">◈</span> IDLORA
+    <span class="tag">v0.1 · Kraenns</span>
   </div>
   <nav id="tabs">
-    <button data-view="vision" class="active">VisiÃ³n</button>
+    <button data-view="vision" class="active">Visión</button>
     <button data-view="arch">Arquitectura</button>
     <button data-view="flow">Flujo</button>
     <button data-view="net">Transporte</button>
@@ -27,26 +27,26 @@
 
 <main>
 
-  <!-- ================= VISIÃ“N ================= -->
+  <!-- ================= VISIÓN ================= -->
   <section id="vision" class="view active">
-    <p class="eyebrow">Proyecto Â· hardware olvidado</p>
+    <p class="eyebrow">Proyecto · hardware olvidado</p>
     <div class="hero">
       <div>
-        <h1>Convertir hardware olvidado en tecnologÃ­a Ãºtil.</h1>
+        <h1>Convertir hardware olvidado en tecnología útil.</h1>
         <p class="lead">
-          Un cajÃ³n lleno de celulares viejos no es basura: es un parque de cÃ³mputo sin usar.
-          RELIC es una infraestructura abierta para convertir esos equipos en nodos autÃ³nomos
-          que trabajan junto a tus PCs â€” con su propio sistema, sus propios procesos y su propia
+          Un cajón lleno de celulares viejos no es basura: es un parque de cómputo sin usar.
+          IDLORA es una infraestructura abierta para convertir esos equipos en nodos autónomos
+          que trabajan junto a tus PCs — con su propio sistema, sus propios procesos y su propia
           memoria de lo que estaban haciendo.
         </p>
         <p class="punch">
           No es control remoto.<br>
           No es una pantalla secundaria.<br>
-          Es darle a un telÃ©fono de 2019 un trabajo real.
+          Es darle a un teléfono de 2019 un trabajo real.
         </p>
       </div>
       <div class="phone-art">
-        <svg viewBox="0 0 260 320" width="260" height="320" role="img" aria-label="TelÃ©fono convertido en nodo conectado a una PC">
+        <svg viewBox="0 0 260 320" width="260" height="320" role="img" aria-label="Teléfono convertido en nodo conectado a una PC">
           <defs>
             <linearGradient id="gg" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#45d6c8" stop-opacity=".9"/>
@@ -55,7 +55,6 @@
             <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           </defs>
 
-          <!-- PC -->
           <g opacity=".95">
             <rect x="8" y="34" width="86" height="54" rx="7" fill="#141b27" stroke="#2a3549"/>
             <rect x="14" y="40" width="74" height="38" rx="4" fill="#0b1018" stroke="#233043"/>
@@ -63,26 +62,22 @@
             <line x1="14" y1="64" x2="66" y2="64" stroke="#f6b93b" stroke-width="1.6" opacity=".5"/>
             <line x1="14" y1="72" x2="40" y2="72" stroke="#5f6b80" stroke-width="1.6"/>
             <rect x="34" y="88" width="34" height="5" rx="2.5" fill="#1e2837" stroke="#2a3549"/>
-            <text x="51" y="112" fill="#8c9ab1" font-family="monospace" font-size="9" text-anchor="middle">PC Â· AGENTE</text>
+            <text x="51" y="112" fill="#8c9ab1" font-family="monospace" font-size="9" text-anchor="middle">PC · AGENTE</text>
           </g>
 
-          <!-- enlace -->
           <path d="M94 74 C 128 74, 132 120, 150 140" fill="none" stroke="url(#gg)" stroke-width="1.8" stroke-dasharray="5 5" filter="url(#glow)">
             <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.2s" repeatCount="indefinite"/>
           </path>
 
-          <!-- telÃ©fono -->
           <g>
             <rect x="146" y="96" width="104" height="196" rx="16" fill="#101521" stroke="#3a4a66" stroke-width="1.5"/>
             <rect x="152" y="104" width="92" height="180" rx="12" fill="#080b11" stroke="#22304a"/>
             <rect x="186" y="100" width="24" height="4" rx="2" fill="#22304a"/>
 
-            <!-- nÃºcleo -->
             <circle cx="198" cy="150" r="17" fill="none" stroke="#f6b93b" stroke-width="1.4" opacity=".85" filter="url(#glow)"/>
             <circle cx="198" cy="150" r="5" fill="#f6b93b"/>
-            <text x="198" y="182" fill="#f6b93b" font-family="monospace" font-size="8" text-anchor="middle">NÃšCLEO</text>
+            <text x="198" y="182" fill="#f6b93b" font-family="monospace" font-size="8" text-anchor="middle">NÚCLEO</text>
 
-            <!-- mÃ³dulos -->
             <g fill="none" stroke="#a98bff" stroke-width="1.3" opacity=".9">
               <rect x="160" y="200" width="30" height="22" rx="4"/>
               <rect x="198" y="200" width="30" height="22" rx="4"/>
@@ -100,10 +95,10 @@
             <line x1="198" y1="167" x2="175" y2="234" stroke="#2f4a55" stroke-width="1"/>
             <line x1="198" y1="167" x2="213" y2="234" stroke="#2f4a55" stroke-width="1"/>
 
-            <text x="198" y="276" fill="#5f6b80" font-family="monospace" font-size="7" text-anchor="middle">LINUX Â· ARM</text>
+            <text x="198" y="276" fill="#5f6b80" font-family="monospace" font-size="7" text-anchor="middle">LINUX · ARM</text>
           </g>
 
-          <text x="198" y="310" fill="#5f6b80" font-family="monospace" font-size="8" text-anchor="middle">NODO AUTÃ“NOMO</text>
+          <text x="198" y="310" fill="#5f6b80" font-family="monospace" font-size="8" text-anchor="middle">NODO AUTÓNOMO</text>
         </svg>
       </div>
     </div>
@@ -112,22 +107,22 @@
       <div class="card">
         <span class="pill amber">El problema</span>
         <h3 style="margin-top:10px">Capacidad tirada</h3>
-        <p class="small dim" style="margin:0">Un telÃ©fono de gama media de 2019 tiene 3â€“4 GB de RAM,
-        64â€“128 GB de almacenamiento, cuatro nÃºcleos, WiFi, Bluetooth y sensores. Eso es mÃ¡s de lo que
-        tenÃ­a un servidor domÃ©stico hace quince aÃ±os. Y casi siempre termina en un cajÃ³n.</p>
+        <p class="small dim" style="margin:0">Un teléfono de gama media de 2019 tiene 3–4 GB de RAM,
+        64–128 GB de almacenamiento, cuatro núcleos, WiFi, Bluetooth y sensores. Eso es más de lo que
+        tenía un servidor doméstico hace quince años. Y casi siempre termina en un cajón.</p>
       </div>
       <div class="card">
         <span class="pill cyan">La propuesta</span>
         <h3 style="margin-top:10px">Un nodo, no un accesorio</h3>
         <p class="small dim" style="margin:0">Un sistema propio en el dispositivo, con tareas propias
-        que siguen corriendo aunque la PC estÃ© apagada. Se comunican, se sincronizan y se coordinan,
+        que siguen corriendo aunque la PC esté apagada. Se comunican, se sincronizan y se coordinan,
         pero ninguno depende del otro para existir.</p>
       </div>
       <div class="card">
         <span class="pill green">El resultado</span>
         <h3 style="margin-top:10px">Conocimiento compartido</h3>
-        <p class="small dim" style="margin:0">Cada dispositivo probado deja una ficha pÃºblica: quÃ© sistema
-        corre, quÃ© funciona, quÃ© no, cÃ³mo se recupera. Lo que aprende uno, lo aprovecha el siguiente.</p>
+        <p class="small dim" style="margin:0">Cada dispositivo probado deja una ficha pública: qué sistema
+        corre, qué funciona, qué no, cómo se recupera. Lo que aprende uno, lo aprovecha el siguiente.</p>
       </div>
     </div>
 
@@ -135,34 +130,34 @@
 
     <div class="grid2">
       <div class="card">
-        <h2>QuÃ© es</h2>
+        <h2>Qué es</h2>
         <ul>
-          <li>Una arquitectura modular: un nÃºcleo, adaptadores por dispositivo y mÃ³dulos de funciones.</li>
+          <li>Una arquitectura modular: un núcleo, adaptadores por dispositivo y módulos de funciones.</li>
           <li>Un protocolo de tareas firmadas con permisos acotados.</li>
-          <li>Un catÃ¡logo comunitario de dispositivos, imÃ¡genes y proyectos.</li>
-          <li>Una Ã©tica de recuperaciÃ³n: nada se publica sin camino de vuelta.</li>
+          <li>Un catálogo comunitario de dispositivos, imágenes y proyectos.</li>
+          <li>Una ética de recuperación: nada se publica sin camino de vuelta.</li>
         </ul>
       </div>
       <div class="card">
-        <h2>QuÃ© no es</h2>
+        <h2>Qué no es</h2>
         <ul>
           <li>No es un sistema operativo nuevo desde cero.</li>
           <li>No es un control remoto ni una segunda pantalla.</li>
           <li>No es un bypass de seguridad, anti-cheat o cuentas ajenas.</li>
-          <li>No es un catÃ¡logo de promesas: lo no probado va como experimental.</li>
+          <li>No es un catálogo de promesas: lo no probado va como experimental.</li>
         </ul>
       </div>
     </div>
 
     <div class="callout" style="margin-top:18px">
       <strong>El primer experimento:</strong> un Redmi Note 9 como computadora auxiliar Linux.
-      Todo lo demÃ¡s â€”Samsung, tablets, Raspberry Pi, PCs viejasâ€” cuelga del mismo nÃºcleo y del mismo
-      contrato. El telÃ©fono es la prueba, no el lÃ­mite.
+      Todo lo demás —Samsung, tablets, Raspberry Pi, PCs viejas— cuelga del mismo núcleo y del mismo
+      contrato. El teléfono es la prueba, no el límite.
     </div>
 
     <p class="small dim" style="margin-top:22px">
-      UsÃ¡ las flechas <span class="kbd">â†</span> <span class="kbd">â†’</span> o las pestaÃ±as de arriba.
-      Cada bloque con borde es clickeable y abre su ficha tÃ©cnica.
+      Usá las flechas <span class="kbd">←</span> <span class="kbd">→</span> o las pestañas de arriba.
+      Cada bloque con borde es clickeable y abre su ficha técnica.
     </p>
   </section>
 
@@ -176,39 +171,37 @@
     </div>
 
     <div class="arch">
-      <!-- capa 1 -->
       <div class="zone ctrl">
-        <div class="zhead"><span>1 Â· Control (PC)</span><span class="scope">Windows / Linux</span></div>
+        <div class="zhead"><span>1 · Control (PC)</span><span class="scope">Windows / Linux</span></div>
         <button class="node ctrl" data-node="agent">
           <span class="n-title">Agente local</span>
-          <span class="n-sub">API mÃ­nima Â· sin privilegios</span>
+          <span class="n-sub">API mínima · sin privilegios</span>
         </button>
         <button class="node ctrl" data-node="perms">
-          <span class="n-title">PolÃ­tica de permisos</span>
-          <span class="n-sub">capacidades Â· deny by default</span>
+          <span class="n-title">Política de permisos</span>
+          <span class="n-sub">capacidades · deny by default</span>
         </button>
         <button class="node ctrl" data-node="audit">
-          <span class="n-title">AuditorÃ­a</span>
-          <span class="n-sub">append-only Â· revocable</span>
+          <span class="n-title">Auditoría</span>
+          <span class="n-sub">append-only · revocable</span>
         </button>
       </div>
 
       <div class="conn">
         <div class="label">TAREA<br>FIRMADA</div>
         <div class="line"></div>
-        <div class="label">RESULTADO<br>+ MÃ‰TRICAS</div>
+        <div class="label">RESULTADO<br>+ MÉTRICAS</div>
       </div>
 
-      <!-- capa 2 -->
       <div class="zone trans">
-        <div class="zhead"><span>2 Â· Transporte</span><span class="scope">el mismo contrato</span></div>
+        <div class="zhead"><span>2 · Transporte</span><span class="scope">el mismo contrato</span></div>
         <button class="node trans" data-node="usb">
           <span class="n-title">USB</span>
-          <span class="n-sub">adb reverse Â· RNDIS</span>
+          <span class="n-sub">adb reverse · RNDIS</span>
         </button>
         <button class="node trans" data-node="lan">
           <span class="n-title">Red local</span>
-          <span class="n-sub">mDNS Â· TLS mutuo</span>
+          <span class="n-sub">mDNS · TLS mutuo</span>
         </button>
         <button class="node trans" data-node="queue">
           <span class="n-title">Cola offline</span>
@@ -222,76 +215,75 @@
         <div class="label">SYNC<br>DIFERIDO</div>
       </div>
 
-      <!-- capa 3 -->
       <div class="zone exec">
-        <div class="zhead"><span>3 Â· EjecuciÃ³n (nodo)</span><span class="scope">ARM / x86</span></div>
+        <div class="zhead"><span>3 · Ejecución (nodo)</span><span class="scope">ARM / x86</span></div>
         <button class="node exec" data-node="firmware">
           <span class="n-title">Sistema base</span>
-          <span class="n-sub">termux Â· postmarketOS Â· Linux</span>
+          <span class="n-sub">termux · postmarketOS · Linux</span>
         </button>
         <button class="node exec" data-node="core">
-          <span class="n-title">NÃºcleo</span>
-          <span class="n-sub">relic-core Â· igual en todos</span>
+          <span class="n-title">Núcleo</span>
+          <span class="n-sub">idlora-core · igual en todos</span>
         </button>
         <button class="node exec" data-node="adapter">
           <span class="n-title">Adaptador</span>
           <span class="n-sub">uno por familia de hardware</span>
         </button>
         <button class="node exec" data-node="modules">
-          <span class="n-title">MÃ³dulos</span>
-          <span class="n-sub">monitoreo Â· storage Â· red Â· auto</span>
+          <span class="n-title">Módulos</span>
+          <span class="n-sub">monitoreo · storage · red · auto</span>
         </button>
       </div>
     </div>
 
     <div class="grid3" style="margin-top:26px">
       <div class="card quiet">
-        <h3>Regla 1 Â· el nÃºcleo no sabe de telÃ©fonos</h3>
-        <p class="small dim" style="margin:0">Si hay que tocar el nÃºcleo para agregar un modelo, la
-        arquitectura estÃ¡ mal. Un modelo nuevo = un adaptador nuevo, nada mÃ¡s.</p>
+        <h3>Regla 1 · el núcleo no sabe de teléfonos</h3>
+        <p class="small dim" style="margin:0">Si hay que tocar el núcleo para agregar un modelo, la
+        arquitectura está mal. Un modelo nuevo = un adaptador nuevo, nada más.</p>
       </div>
       <div class="card quiet">
-        <h3>Regla 2 Â· la capacidad manda</h3>
-        <p class="small dim" style="margin:0">Un mÃ³dulo pide permisos. Si no los tiene, no ejecuta.
+        <h3>Regla 2 · la capacidad manda</h3>
+        <p class="small dim" style="margin:0">Un módulo pide permisos. Si no los tiene, no ejecuta.
         No hay caminos alternativos ni flags ocultos.</p>
       </div>
       <div class="card quiet">
-        <h3>Regla 3 Â· lo que no se probÃ³, no se afirma</h3>
+        <h3>Regla 3 · lo que no se probó, no se afirma</h3>
         <p class="small dim" style="margin:0">Los adaptadores declaran lo que <em>pueden</em> hacer.
-        El catÃ¡logo distingue verificado, en pruebas y experimental.</p>
+        El catálogo distingue verificado, en pruebas y experimental.</p>
       </div>
     </div>
 
     <hr class="sep">
 
     <h3 style="margin-bottom:10px">El contrato, en concreto</h3>
-    <p class="small dim" style="margin:0 0 6px">Una tarea es un objeto firmado. Tiene alcance, versiÃ³n, vencimiento y un ID
-    idempotente. Nada mÃ¡s viaja por el cable.</p>
-<pre><span class="c">// tarea firmada â€” lo Ãºnico que cruza el transporte</span>
+    <p class="small dim" style="margin:0 0 6px">Una tarea es un objeto firmado. Tiene alcance, versión, vencimiento y un ID
+    idempotente. Nada más viaja por el cable.</p>
+<pre><span class="c">// tarea firmada — lo único que cruza el transporte</span>
 {
-  <span class="k">"id"</span>: <span class="s">"tsk_01J8Z3â€¦"</span>,          <span class="c">// idempotente: repetirla no duplica efectos</span>
+  <span class="k">"id"</span>: <span class="s">"tsk_01J8Z3…"</span>,          <span class="c">// idempotente: repetirla no duplica efectos</span>
   <span class="k">"module"</span>: <span class="s">"gpu-watch"</span>,
   <span class="k">"scope"</span>: [<span class="s">"gpu:read"</span>, <span class="s">"notify:send"</span>],
   <span class="k">"deadline"</span>: <span class="s">"2026-11-10T00:00:00Z"</span>,
   <span class="k">"params"</span>: { <span class="k">"interval_s"</span>: 5, <span class="k">"threshold"</span>: 83 },
-  <span class="k">"sig"</span>: <span class="s">"ed25519:â€¦"</span>             <span class="c">// firmada por el agente autorizado</span>
+  <span class="k">"sig"</span>: <span class="s">"ed25519:…"</span>             <span class="c">// firmada por el agente autorizado</span>
 }</pre>
 
-    <p class="small dim" style="margin-top:14px">Del otro lado, el nodo responde lo mÃ­nimo: estado, resultado y mÃ©tricas.
-    Nunca expone su sistema de archivos ni su shell. Si el resultado no entra en la polÃ­tica, no se devuelve.</p>
+    <p class="small dim" style="margin-top:14px">Del otro lado, el nodo responde lo mínimo: estado, resultado y métricas.
+    Nunca expone su sistema de archivos ni su shell. Si el resultado no entra en la política, no se devuelve.</p>
   </section>
 
   <!-- ================= FLUJO ================= -->
   <section id="flow" class="view">
     <div class="section-head">
       <p class="eyebrow">Caso concreto</p>
-      <h2>Â«VigilÃ¡ la GPU y avisame si se pasa de 83 Â°CÂ»</h2>
-      <p>El ejemplo mÃ¡s chico que muestra lo importante: el trabajo empieza en la PC y <em>sigue</em>
-      cuando la PC ya no estÃ¡.</p>
+      <h2>«Vigilá la GPU y avisame si se pasa de 83 °C»</h2>
+      <p>El ejemplo más chico que muestra lo importante: el trabajo empieza en la PC y <em>sigue</em>
+      cuando la PC ya no está.</p>
     </div>
 
     <div class="flow-controls">
-      <button class="btn primary" id="play">â–¶ Reproducir</button>
+      <button class="btn primary" id="play">▶ Reproducir</button>
       <button class="btn" id="reset">Reiniciar</button>
       <span class="small dim">El paso 6 es el que cambia todo el modelo.</span>
     </div>
@@ -300,12 +292,12 @@
       <div class="step" data-node="flow1">
         <div class="num">01</div>
         <div class="st-title">Pedido</div>
-        <div class="st-sub">EscribÃ­s la regla una vez, desde la PC.</div>
+        <div class="st-sub">Escribís la regla una vez, desde la PC.</div>
       </div>
       <div class="step" data-node="flow2">
         <div class="num">02</div>
         <div class="st-title">Permiso</div>
-        <div class="st-sub">La polÃ­tica valida <code>gpu:read</code> y <code>notify:send</code>.</div>
+        <div class="st-sub">La política valida <code>gpu:read</code> y <code>notify:send</code>.</div>
       </div>
       <div class="step" data-node="flow3">
         <div class="num">03</div>
@@ -314,46 +306,46 @@
       </div>
       <div class="step" data-node="flow4">
         <div class="num">04</div>
-        <div class="st-title">EnvÃ­o</div>
-        <div class="st-sub">USB si estÃ¡ cerca, red si no. Cola si no hay enlace.</div>
+        <div class="st-title">Envío</div>
+        <div class="st-sub">USB si está cerca, red si no. Cola si no hay enlace.</div>
       </div>
       <div class="step" data-node="flow5">
         <div class="num">05</div>
-        <div class="st-title">EjecuciÃ³n</div>
+        <div class="st-title">Ejecución</div>
         <div class="st-sub">El nodo verifica, acepta y muestrea cada 5 s.</div>
       </div>
       <div class="step" data-node="flow6">
         <div class="num">06</div>
-        <div class="st-title">AutonomÃ­a</div>
-        <div class="st-sub">ApagÃ¡s la PC. El telÃ©fono sigue midiendo y guardando.</div>
+        <div class="st-title">Autonomía</div>
+        <div class="st-sub">Apagás la PC. El teléfono sigue midiendo y guardando.</div>
       </div>
       <div class="step" data-node="flow7">
         <div class="num">07</div>
-        <div class="st-title">SincronÃ­a</div>
-        <div class="st-sub">Al volver, entrega la serie, notifica y queda en auditorÃ­a.</div>
+        <div class="st-title">Sincronía</div>
+        <div class="st-sub">Al volver, entrega la serie, notifica y queda en auditoría.</div>
       </div>
     </div>
 
     <p class="flow-note">
-      En un sistema de control remoto, apagar la PC detiene todo. AcÃ¡ no: el nodo tiene la tarea,
+      En un sistema de control remoto, apagar la PC detiene todo. Acá no: el nodo tiene la tarea,
       el reloj y el almacenamiento. La PC es quien pide, no quien sostiene.
     </p>
 
     <div class="grid2" style="margin-top:26px">
       <div class="card">
-        <span class="pill green">QuÃ© gana la PC</span>
+        <span class="pill green">Qué gana la PC</span>
         <ul>
           <li>El muestreo no consume CPU ni RAM de Windows.</li>
-          <li>La regla se evalÃºa aunque la PC estÃ© en suspensiÃ³n o apagada.</li>
+          <li>La regla se evalúa aunque la PC esté en suspensión o apagada.</li>
           <li>El historial queda en el nodo, no en un archivo que se pierde.</li>
         </ul>
       </div>
       <div class="card">
-        <span class="pill red">QuÃ© puede fallar</span>
+        <span class="pill red">Qué puede fallar</span>
         <ul>
-          <li>El nodo se reinicia y pierde la tarea en memoria â†’ mitigado con cola en disco.</li>
-          <li>El enlace vuelve con datos viejos â†’ se marcan por antigÃ¼edad.</li>
-          <li>Se llena el disco del telÃ©fono â†’ cuota y rotaciÃ³n obligatorias.</li>
+          <li>El nodo se reinicia y pierde la tarea en memoria → mitigado con cola en disco.</li>
+          <li>El enlace vuelve con datos viejos → se marcan por antigüedad.</li>
+          <li>Se llena el disco del teléfono → cuota y rotación obligatorias.</li>
         </ul>
       </div>
     </div>
@@ -365,21 +357,21 @@
       <p class="eyebrow">Transporte</p>
       <h2>USB primero, red cuando haga falta</h2>
       <p>No hay que elegir de antemano: el contrato es el mismo y el transporte se negocia.
-      <span class="dim">Click en cada tarjeta para el detalle tÃ©cnico.</span></p>
+      <span class="dim">Click en cada tarjeta para el detalle técnico.</span></p>
     </div>
 
     <div class="grid3">
       <button class="node trans" data-node="usb" style="padding:16px">
         <span class="n-title">USB</span>
-        <span class="n-sub">adb reverse Â· RNDIS Â· USB-Ethernet</span>
+        <span class="n-sub">adb reverse · RNDIS · USB-Ethernet</span>
       </button>
       <button class="node trans" data-node="lan" style="padding:16px">
         <span class="n-title">Red local</span>
-        <span class="n-sub">mDNS Â· TLS mutuo Â· VPN de malla</span>
+        <span class="n-sub">mDNS · TLS mutuo · VPN de malla</span>
       </button>
       <button class="node trans" data-node="queue" style="padding:16px">
         <span class="n-title">Cola offline</span>
-        <span class="n-sub">store &amp; forward Â· idempotencia</span>
+        <span class="n-sub">store &amp; forward · idempotencia</span>
       </button>
     </div>
 
@@ -391,16 +383,16 @@
         <tbody>
           <tr><td>Latencia</td><td>Baja y estable</td><td>Media, variable</td><td>Indefinida</td></tr>
           <tr><td>Ancho de banda</td><td>Suficiente para control</td><td>Alto, sirve para archivos</td><td>Limitado por disco</td></tr>
-          <tr><td>Requiere</td><td>Cable y depuraciÃ³n USB</td><td>WiFi o Ethernet</td><td>Nada: es el fallback</td></tr>
+          <tr><td>Requiere</td><td>Cable y depuración USB</td><td>WiFi o Ethernet</td><td>Nada: es el fallback</td></tr>
           <tr><td>Punto de falla</td><td>El cable</td><td>El router</td><td>El disco del nodo</td></tr>
-          <tr><td>Uso tÃ­pico</td><td>Primer arranque, rescate, tareas crÃ­ticas</td><td>Nodos fijos en la casa</td><td>Todo lo demÃ¡s</td></tr>
+          <tr><td>Uso típico</td><td>Primer arranque, rescate, tareas críticas</td><td>Nodos fijos en la casa</td><td>Todo lo demás</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="callout" style="margin-top:20px">
-      <strong>DecisiÃ³n de diseÃ±o:</strong> ninguna tarea se pierde por perder el enlace. Si el transporte
-      cae, la tarea ya estÃ¡ en la cola del nodo. Si nunca llegÃ³, el agente reintenta con el mismo ID y el
+      <strong>Decisión de diseño:</strong> ninguna tarea se pierde por perder el enlace. Si el transporte
+      cae, la tarea ya está en la cola del nodo. Si nunca llegó, el agente reintenta con el mismo ID y el
       nodo descarta duplicados.
     </div>
   </section>
@@ -408,10 +400,10 @@
   <!-- ================= COMPATIBILIDAD ================= -->
   <section id="compat" class="view">
     <div class="section-head">
-      <p class="eyebrow">CatÃ¡logo</p>
-      <h2>NingÃºn dispositivo es Â«compatibleÂ» sin evidencia</h2>
-      <p>Cada fila es una ficha con pruebas, lÃ­mites y procedimiento de recuperaciÃ³n. Los estados son del
-      proyecto, no del fabricante. <span class="dim">FiltrÃ¡ por estado.</span></p>
+      <p class="eyebrow">Catálogo</p>
+      <h2>Ningún dispositivo es «compatible» sin evidencia</h2>
+      <p>Cada fila es una ficha con pruebas, límites y procedimiento de recuperación. Los estados son del
+      proyecto, no del fabricante. <span class="dim">Filtrá por estado.</span></p>
     </div>
 
     <div class="chips">
@@ -429,43 +421,43 @@
         </thead>
         <tbody>
           <tr data-state="experimental">
-            <td><strong>Xiaomi Redmi Note 9</strong><br><span class="small dim">merlin Â· objetivo inicial</span></td>
-            <td>MediaTek Helio G85<br><span class="small dim">ARM64 Â· 3â€“4 GB</span></td>
+            <td><strong>Xiaomi Redmi Note 9</strong><br><span class="small dim">merlin · objetivo inicial</span></td>
+            <td>MediaTek Helio G85<br><span class="small dim">ARM64 · 3–4 GB</span></td>
             <td><span class="pill amber">Experimental</span></td>
-            <td>Fase 0 hoy Â· Linux nativo incierto</td>
+            <td>Fase 0 hoy · Linux nativo incierto</td>
             <td>Soporte mainline del SoC; anti-rollback</td>
           </tr>
           <tr data-state="pruebas">
             <td><strong>Xiaomi Redmi Note 9S / Pro</strong><br><span class="small dim">curtana / excalibur</span></td>
-            <td>Snapdragon 720G<br><span class="small dim">ARM64 Â· 4â€“6 GB</span></td>
+            <td>Snapdragon 720G<br><span class="small dim">ARM64 · 4–6 GB</span></td>
             <td><span class="pill cyan">En pruebas</span></td>
-            <td>Fase 0 â†’ root â†’ Linux</td>
+            <td>Fase 0 → root → Linux</td>
             <td>Firmware y drivers del SoC</td>
           </tr>
           <tr data-state="fase0">
             <td><strong>Tablets Android viejas</strong><br><span class="small dim">varios fabricantes</span></td>
-            <td>ARM32 / ARM64<br><span class="small dim">1â€“3 GB</span></td>
+            <td>ARM32 / ARM64<br><span class="small dim">1–3 GB</span></td>
             <td><span class="pill">Solo fase 0</span></td>
             <td>Termux + proot, sin root</td>
-            <td>RAM escasa; poca actualizaciÃ³n</td>
+            <td>RAM escasa; poca actualización</td>
           </tr>
           <tr data-state="verificado">
             <td><strong>Raspberry Pi 3 / 4 / 5</strong></td>
-            <td>ARM64<br><span class="small dim">1â€“8 GB</span></td>
+            <td>ARM64<br><span class="small dim">1–8 GB</span></td>
             <td><span class="pill green">Verificado</span></td>
             <td>Linux nativo, sin riesgo</td>
-            <td>AlimentaciÃ³n y disipaciÃ³n</td>
+            <td>Alimentación y disipación</td>
           </tr>
           <tr data-state="verificado">
             <td><strong>PC x86 de escritorio</strong><br><span class="small dim">equipos recuperados</span></td>
-            <td>x86_64<br><span class="small dim">4â€“16 GB</span></td>
+            <td>x86_64<br><span class="small dim">4–16 GB</span></td>
             <td><span class="pill green">Verificado</span></td>
             <td>Linux nativo</td>
-            <td>Consumo elÃ©ctrico</td>
+            <td>Consumo eléctrico</td>
           </tr>
           <tr data-state="experimental">
             <td><strong>Samsung Galaxy A / S antiguos</strong></td>
-            <td>Exynos / Snapdragon<br><span class="small dim">2â€“4 GB</span></td>
+            <td>Exynos / Snapdragon<br><span class="small dim">2–4 GB</span></td>
             <td><span class="pill amber">Experimental</span></td>
             <td>Depende del modelo exacto</td>
             <td>Knox, bootloader, variantes regionales</td>
@@ -481,11 +473,11 @@
 
     <hr class="sep">
 
-    <h3 style="margin-bottom:8px">AnatomÃ­a de una ficha</h3>
-    <p class="small dim" style="margin:0 0 6px">Es lo que hace que el catÃ¡logo sirva. Sin estos campos, una entrada no existe.</p>
+    <h3 style="margin-bottom:8px">Anatomía de una ficha</h3>
+    <p class="small dim" style="margin:0 0 6px">Es lo que hace que el catálogo sirva. Sin estos campos, una entrada no existe.</p>
 <pre>{
   <span class="k">"id"</span>: <span class="s">"xiaomi-redmi-note-9-merlin"</span>,
-  <span class="k">"hardware"</span>: { <span class="k">"soc"</span>: <span class="s">"â€¦"</span>, <span class="k">"ram_gb"</span>: 3, <span class="k">"arch"</span>: <span class="s">"arm64"</span> },
+  <span class="k">"hardware"</span>: { <span class="k">"soc"</span>: <span class="s">"…"</span>, <span class="k">"ram_gb"</span>: 3, <span class="k">"arch"</span>: <span class="s">"arm64"</span> },
   <span class="k">"niveles"</span>: {
     <span class="k">"fase0_termux"</span>:  <span class="s">"verificado"</span>,
     <span class="k">"fase1_root"</span>:    <span class="s">"en-pruebas"</span>,
@@ -494,49 +486,49 @@
   <span class="k">"funciona"</span>: [<span class="s">"red"</span>, <span class="s">"storage"</span>, <span class="s">"scheduler"</span>],
   <span class="k">"no_funciona"</span>: [<span class="s">"gpu"</span>, <span class="s">"modem"</span>, <span class="s">"camera"</span>],
   <span class="k">"recuperacion"</span>: { <span class="k">"metodo"</span>: <span class="s">"fastboot"</span>, <span class="k">"probado"</span>: <span class="k">true</span> },
-  <span class="k">"firmware_stock"</span>: { <span class="k">"sha256"</span>: <span class="s">"â€¦"</span>, <span class="k">"verificado"</span>: <span class="k">true</span> }
+  <span class="k">"firmware_stock"</span>: { <span class="k">"sha256"</span>: <span class="s">"…"</span>, <span class="k">"verificado"</span>: <span class="k">true</span> }
 }</pre>
   </section>
 
   <!-- ================= SEGURIDAD ================= -->
   <section id="sec" class="view">
     <div class="section-head">
-      <p class="eyebrow">Seguridad y recuperaciÃ³n</p>
-      <h2>Si no se puede volver atrÃ¡s, no entra al proyecto</h2>
+      <p class="eyebrow">Seguridad y recuperación</p>
+      <h2>Si no se puede volver atrás, no entra al proyecto</h2>
       <p>La confianza no se pide: se verifica en cuatro pasos, y el quinto es el que casi nadie documenta.
       <span class="dim">Click en cada tarjeta.</span></p>
     </div>
 
     <div class="grid3">
       <button class="node meta" data-node="pairing" style="padding:16px">
-        <span class="n-title">1 Â· Emparejamiento</span>
-        <span class="n-sub">cÃ³digo + certificado del hogar</span>
+        <span class="n-title">1 · Emparejamiento</span>
+        <span class="n-sub">código + certificado del hogar</span>
       </button>
       <button class="node meta" data-node="scopes" style="padding:16px">
-        <span class="n-title">2 Â· Alcance mÃ­nimo</span>
+        <span class="n-title">2 · Alcance mínimo</span>
         <span class="n-sub">permisos por tarea</span>
       </button>
       <button class="node meta" data-node="recovery" style="padding:16px">
-        <span class="n-title">3 Â· RecuperaciÃ³n</span>
-        <span class="n-sub">rollback probado, no teÃ³rico</span>
+        <span class="n-title">3 · Recuperación</span>
+        <span class="n-sub">rollback probado, no teórico</span>
       </button>
     </div>
 
     <div class="grid2" style="margin-top:14px">
       <button class="node meta" data-node="audit" style="padding:16px">
-        <span class="n-title">4 Â· AuditorÃ­a</span>
+        <span class="n-title">4 · Auditoría</span>
         <span class="n-sub">todo intento queda registrado</span>
       </button>
       <button class="node meta" data-node="battery" style="padding:16px">
-        <span class="n-title">5 Â· BaterÃ­a y tÃ©rmica</span>
+        <span class="n-title">5 · Batería y térmica</span>
         <span class="n-sub">el riesgo que nadie documenta</span>
       </button>
     </div>
 
     <div class="callout risk" style="margin-top:22px">
-      <strong>LÃ­mite duro del proyecto:</strong> nada de esto toca cuentas, anti-cheat, contenido con DRM,
-      datos personales del dueÃ±o anterior ni dispositivos de terceros. Un nodo solo ejecuta tareas
-      firmadas por quien lo emparejÃ³, con los permisos que esa persona aprobÃ³.
+      <strong>Límite duro del proyecto:</strong> nada de esto toca cuentas, anti-cheat, contenido con DRM,
+      datos personales del dueño anterior ni dispositivos de terceros. Un nodo solo ejecuta tareas
+      firmadas por quien lo emparejó, con los permisos que esa persona aprobó.
     </div>
 
     <hr class="sep">
@@ -547,20 +539,20 @@
         <h3 style="color:var(--green)">Checklist de entrada</h3>
         <ul class="small">
           <li>Firmware original descargado y con hash verificado</li>
-          <li>MÃ©todo de recuperaciÃ³n identificado y leÃ­do completo</li>
+          <li>Método de recuperación identificado y leído completo</li>
           <li>Anti-rollback conocido (algunos equipos no vuelven nunca)</li>
-          <li>BaterÃ­a con carga suficiente para todo el proceso</li>
-          <li>Un segundo equipo para leer la guÃ­a si algo se cuelga</li>
+          <li>Batería con carga suficiente para todo el proceso</li>
+          <li>Un segundo equipo para leer la guía si algo se cuelga</li>
         </ul>
       </div>
       <div class="card quiet">
-        <h3 style="color:var(--red)">SeÃ±ales de alto</h3>
+        <h3 style="color:var(--red)">Señales de alto</h3>
         <ul class="small">
-          <li>No hay firmware stock disponible â†’ no se empieza</li>
-          <li>La guÃ­a pide desactivar verificaciones de seguridad del sistema</li>
-          <li>El Ãºnico tutorial que existe es un video sin pasos escritos</li>
-          <li>El equipo es el Ãºnico que tenÃ©s para trabajar</li>
-          <li>BaterÃ­a visiblemente hinchada â†’ se retira, no se carga</li>
+          <li>No hay firmware stock disponible → no se empieza</li>
+          <li>La guía pide desactivar verificaciones de seguridad del sistema</li>
+          <li>El único tutorial que existe es un video sin pasos escritos</li>
+          <li>El equipo es el único que tenés para trabajar</li>
+          <li>Batería visiblemente hinchada → se retira, no se carga</li>
         </ul>
       </div>
     </div>
@@ -577,69 +569,68 @@
     <div class="timeline">
       <div class="phase p1" data-node="ph1">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 0 Â· NÃºcleo sin tocar el telÃ©fono</h3><span class="pill green">riesgo cero</span></div>
-          <p class="ph-goal">Termux + proot en Android stock. El nÃºcleo, el agente y la cola funcionan de punta a punta.</p>
-          <p class="ph-exit">âœ“ sale cuando: una tarea sobrevive al apagado de la PC y sincroniza al volver</p>
+          <div class="ph-head"><h3>Fase 0 · Núcleo sin tocar el teléfono</h3><span class="pill green">riesgo cero</span></div>
+          <p class="ph-goal">Termux + proot en Android stock. El núcleo, el agente y la cola funcionan de punta a punta.</p>
+          <p class="ph-exit">✓ sale cuando: una tarea sobrevive al apagado de la PC y sincroniza al volver</p>
         </div>
       </div>
       <div class="phase p2" data-node="ph2">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 1 Â· Un nodo de verdad</h3><span class="pill amber">riesgo bajo</span></div>
-          <p class="ph-goal">Servicio persistente, arranque automÃ¡tico, watchdog, carga limitada de baterÃ­a y mÃ©tricas propias.</p>
-          <p class="ph-exit">âœ“ sale cuando: 7 dÃ­as de uptime sin intervenciÃ³n</p>
+          <div class="ph-head"><h3>Fase 1 · Un nodo de verdad</h3><span class="pill amber">riesgo bajo</span></div>
+          <p class="ph-goal">Servicio persistente, arranque automático, watchdog, carga limitada de batería y métricas propias.</p>
+          <p class="ph-exit">✓ sale cuando: 7 días de uptime sin intervención</p>
         </div>
       </div>
       <div class="phase p3" data-node="ph3">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 2 Â· CatÃ¡logo y contrato pÃºblico</h3><span class="pill cyan">riesgo bajo</span></div>
-          <p class="ph-goal">Fichas de dispositivo, manifiesto de mÃ³dulos, validador de esquema y guÃ­a de contribuciÃ³n.</p>
-          <p class="ph-exit">âœ“ sale cuando: un tercero agrega una ficha vÃ¡lida sin ayuda</p>
+          <div class="ph-head"><h3>Fase 2 · Catálogo y contrato público</h3><span class="pill cyan">riesgo bajo</span></div>
+          <p class="ph-goal">Fichas de dispositivo, manifiesto de módulos, validador de esquema y guía de contribución.</p>
+          <p class="ph-exit">✓ sale cuando: un tercero agrega una ficha válida sin ayuda</p>
         </div>
       </div>
       <div class="phase p4" data-node="ph4">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 3 Â· Linux real en el Redmi Note 9</h3><span class="pill red">riesgo alto</span></div>
-          <p class="ph-goal">Evaluar postmarketOS / mainline. Documentar quÃ© funciona y quÃ© no, sin prometer milagros.</p>
-          <p class="ph-exit">âœ“ sale cuando: hay imagen reproducible + rollback probado</p>
+          <div class="ph-head"><h3>Fase 3 · Linux real en el Redmi Note 9</h3><span class="pill red">riesgo alto</span></div>
+          <p class="ph-goal">Evaluar postmarketOS / mainline. Documentar qué funciona y qué no, sin prometer milagros.</p>
+          <p class="ph-exit">✓ sale cuando: hay imagen reproducible + rollback probado</p>
         </div>
       </div>
       <div class="phase p5" data-node="ph5">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 4 Â· Segunda familia de hardware</h3><span class="pill violet">riesgo medio</span></div>
-          <p class="ph-goal">Un adaptador nuevo sin tocar el nÃºcleo. La prueba real de que la arquitectura es modular.</p>
-          <p class="ph-exit">âœ“ sale cuando: el mismo mÃ³dulo corre en dos plataformas distintas</p>
+          <div class="ph-head"><h3>Fase 4 · Segunda familia de hardware</h3><span class="pill violet">riesgo medio</span></div>
+          <p class="ph-goal">Un adaptador nuevo sin tocar el núcleo. La prueba real de que la arquitectura es modular.</p>
+          <p class="ph-exit">✓ sale cuando: el mismo módulo corre en dos plataformas distintas</p>
         </div>
       </div>
       <div class="phase p6" data-node="ph6">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 5 Â· Comunidad</h3><span class="pill cyan">continuo</span></div>
-          <p class="ph-goal">Proyectos publicados, revisiÃ³n entre pares, plantillas de instalaciÃ³n y banco de pruebas.</p>
-          <p class="ph-exit">âœ“ sale cuando: hay mÃ¡s contribuciones externas que propias</p>
+          <div class="ph-head"><h3>Fase 5 · Comunidad</h3><span class="pill cyan">continuo</span></div>
+          <p class="ph-goal">Proyectos publicados, revisión entre pares, plantillas de instalación y banco de pruebas.</p>
+          <p class="ph-exit">✓ sale cuando: hay más contribuciones externas que propias</p>
         </div>
       </div>
     </div>
 
     <div class="callout" style="margin-top:24px">
-      <strong>La fase que importa:</strong> la 0 y la 1 se pueden hacer esta semana sin arriesgar el telÃ©fono.
-      La 3 es investigaciÃ³n, no promesa. Publicar resultados negativos tambiÃ©n es parte del proyecto.
+      <strong>La fase que importa:</strong> la 0 y la 1 se pueden hacer esta semana sin arriesgar el teléfono.
+      La 3 es investigación, no promesa. Publicar resultados negativos también es parte del proyecto.
     </div>
   </section>
 
 </main>
 
 <footer class="site">
-  <span>RELIC Â· <span id="year">2026</span> Â· documento de concepto v0.1</span>
-  <span>sin dependencias Â· abre offline</span>
+  <span>IDLORA · <span id="year">2026</span> · un proyecto de Kraenns · v0.1</span>
+  <span>sin dependencias · abre offline</span>
 </footer>
 
-<!-- panel de detalle -->
 <aside id="panel" class="panel" aria-live="polite">
   <header>
     <div>
-      <div class="p-kind">â€”</div>
-      <h3>â€”</h3>
+      <div class="p-kind">—</div>
+      <h3>—</h3>
     </div>
-    <button class="close" aria-label="Cerrar">âœ•</button>
+    <button class="close" aria-label="Cerrar">✕</button>
   </header>
   <div class="body"></div>
 </aside>

@@ -1,5 +1,5 @@
 /* ============================================================
-   RELIC — interacción de la presentación
+   IDLORA — interacción de la presentación
    Navegación por pestañas + panel de detalle + flujo animado.
    ============================================================ */
 
@@ -103,7 +103,7 @@
     /* --- ejecución --- */
     core: {
       kind: "Ejecución · nodo",
-      title: "Núcleo (relic-core)",
+      title: "Núcleo (idlora-core)",
       body: `<p>El mismo código en todos los dispositivos. Sabe recibir una tarea, verificar quién la
              firmó, ejecutarla, medirla y devolver el resultado. No sabe nada específico de ningún
              teléfono: eso lo resuelve el adaptador.</p>
