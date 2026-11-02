@@ -12,6 +12,8 @@ autónomos que trabajan junto a nuestras PCs.
 
 **Presentación interactiva → [`site/index.html`](site/index.html)** (abre offline, sin dependencias)
 
+**🌐 Ver online → https://sunshine-gold.github.io/idlora/**
+
 ---
 
 ## 1. La idea en una página
@@ -298,18 +300,26 @@ Doble click en `SUBIR.cmd`, o desde una terminal:
 .\subir.ps1
 ```
 
-Hace todo: verifica el repo, crea el repositorio privado en tu cuenta y sube la rama.
+Hace todo: verifica el repo, crea el repositorio en tu cuenta y sube la rama.
 Si `gh` no está logueado, te dice exactamente qué ejecutar (`gh auth login`) y no toca nada.
 
-Opciones: `-Nombre idlora` para elegir el nombre, `-Publico` si alguna vez lo querés abierto.
+Opciones: `-Nombre idlora` para elegir el nombre, `-Publico` para crearlo abierto,
+`-DryRun` para probar el script sin subir nada.
 
-**Ojo con el repo privado:** GitHub no renderiza el HTML adentro del repo. Para que alguien vea la
-presentación, tiene que abrir el repo con `github.dev` (tecla `.`), o tener Pages (requiere Pro), o
-recibir la carpeta y abrir `site/index.html`. Agregar colaborador:
+### Presentación online
 
-```powershell
-gh api -X PUT repos/Kraenns/idlora/collaborators/USUARIO -f permission=push
-```
+El repositorio es **público** y la carpeta `site/` se publica sola con GitHub Pages en cada push
+a `main` (workflow en `.github/workflows/pages.yml`).
+
+**https://sunshine-gold.github.io/idlora/**
+
+Ese link lo abre cualquiera, sin cuenta y sin instalar nada. Si el workflow falla la primera vez,
+revisá que en *Settings → Pages* la fuente sea **GitHub Actions**.
+
+### Si alguna vez lo volvés privado
+
+GitHub no renderiza HTML adentro de un repo privado, y Pages requiere Pro. Las alternativas son
+abrir el repo con `github.dev` (tecla `.`) o mandar la carpeta y abrir `site/index.html`.
 
 ---
 
