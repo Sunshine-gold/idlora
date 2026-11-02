@@ -364,7 +364,9 @@
     if (!target) return;
     views.forEach(v => v.classList.toggle("active", v === target));
     tabs.forEach(t => t.classList.toggle("active", t.dataset.view === id));
-    if (push !== false) history.replaceState(null, "", "#" + id);
+    if (push !== false) {
+      try { history.replaceState(null, "", "#" + id); } catch (e) { /* file:// sin soporte */ }
+    }
     window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
     closePanel();
   }
