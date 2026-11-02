@@ -34,17 +34,21 @@
 .PARAMETER Si
     Salta la confirmación manual. Usalo solo si sabés lo que hace.
 
+.PARAMETER DryRun
+    Muestra todo lo que haría pero no crea el repo ni sube nada. Sirve para probar el script.
+
 .EXAMPLE
     .\subir.ps1
 
 .EXAMPLE
-    .\subir.ps1 -Nombre kraenns-nombre -Si
+    .\subir.ps1 -Nombre idlora -Si
 #>
 [CmdletBinding()]
 param(
     [string]$Nombre,
     [switch]$Publico,
-    [switch]$Si
+    [switch]$Si,
+    [switch]$DryRun
 )
 
 $ErrorActionPreference = 'Stop'
@@ -56,16 +60,29 @@ function Ok    ($m) { Write-Host "  [ok] $m" -ForegroundColor Green }
 function Aviso ($m) { Write-Host "  [!] $m" -ForegroundColor Yellow }
 function Mal   ($m) { Write-Host "  [x] $m" -ForegroundColor Red }
 
-# Llama a gh sin que el stderr nativo dispare el ErrorActionPreference global.
-function Call-Gh {
-    param([string[]]$GhArgs)
+# Corre un comando nativo sin que su stderr dispare el ErrorActionPreference global.
+# Devuelve objeto con .Code (exit code) y .Out (texto combinado).
+function Invoke-Native {
+    param(
+        [Parameter(Mandatory)][string]$Exe,
+        [string[]]$Arguments = @()
+    )
+    # Se resuelve la ruta real del ejecutable para no chocar con funciones del script.
+    $cmd = Get-Command $Exe -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+    if (-not $cmd) {
+        return [pscustomobject]@{ Code = 127; Out = "$Exe no encontrado" }
+    }
     $prev = $ErrorActionPreference
     $ErrorActionPreference = 'Continue'
-    $out  = & gh @GhArgs 2>&1 | Out-String
+    $raw  = & $cmd.Source @Arguments 2>&1
     $code = $LASTEXITCODE
     $ErrorActionPreference = $prev
-    [pscustomobject]@{ Code = $code; Out = ($out -as [string]).Trim() }
+    $text = (($raw | ForEach-Object { "$_" }) -join "`n").Trim()
+    [pscustomobject]@{ Code = $code; Out = $text }
 }
+
+function Invoke-Git { param([string[]]$Arguments) Invoke-Native -Exe 'git' -Arguments $Arguments }
+function Invoke-Gh  { param([string[]]$Arguments) Invoke-Native -Exe 'gh'  -Arguments $Arguments }
 
 Write-Host ""
 Write-Host "  PUBLICAR EL REPOSITORIO EN GITHUB" -ForegroundColor White
@@ -77,22 +94,27 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
     Mal "git no está instalado o no está en el PATH."
     exit 1
 }
-Ok ("git " + (git --version))
+Ok ((Invoke-Git @('--version')).Out)
 
 # ---------- 2. estamos en un repo ----------
 Paso "Verificando el repositorio"
-$dentro = git rev-parse --is-inside-work-tree 2>$null
-if ($dentro -ne 'true') {
+$dentro = Invoke-Git @('rev-parse', '--is-inside-work-tree')
+if ($dentro.Out -ne 'true' -and $PSScriptRoot) {
+    # Si se ejecutó desde otra carpeta, probamos parados donde vive el script.
+    Push-Location $PSScriptRoot
+    $dentro = Invoke-Git @('rev-parse', '--is-inside-work-tree')
+}
+if ($dentro.Out -ne 'true') {
     Mal "Esta carpeta no es un repositorio git."
     Info "Ejecutá primero:  git init -b main"
     exit 1
 }
-$raiz = git rev-parse --show-toplevel
+$raiz = (Invoke-Git @('rev-parse', '--show-toplevel')).Out
 Info "Carpeta: $raiz"
 Set-Location $raiz
 
-$commit = git rev-list -n 1 HEAD 2>$null
-if (-not $commit) {
+$commit = Invoke-Git @('rev-list', '-n', '1', 'HEAD')
+if ($commit.Code -ne 0 -or -not $commit.Out) {
     Mal "El repositorio no tiene commits todavía."
     Info "Ejecutá primero:  git add -A ; git commit -m ""primer commit"""
     exit 1
@@ -107,10 +129,14 @@ $visibilidad = if ($Publico) { 'público' } else { 'privado' }
 
 # ---------- 4. estado del árbol ----------
 Paso "Revisando cambios sin commitear"
-$pendientes = git status --porcelain
-if ($pendientes) {
+$estado = Invoke-Git @('status', '--porcelain')
+if ($estado.Code -ne 0) {
+    Mal "No pude leer el estado del repo."
+    exit 1
+}
+if ($estado.Out) {
     Aviso "Hay cambios sin commitear. NO se van a subir."
-    $pendientes | Select-Object -First 10 | ForEach-Object { Info $_ }
+    ($estado.Out -split "`n") | Select-Object -First 10 | ForEach-Object { Info $_ }
     Info "Si los querés incluir:  git add -A ; git commit -m ""mensaje"""
 }
 else {
@@ -118,15 +144,19 @@ else {
 }
 
 # ---------- 5. remote existente ----------
-$remote = git remote get-url origin 2>$null
-if ($remote) {
+$remote = Invoke-Git @('remote', 'get-url', 'origin')
+if ($remote.Code -eq 0 -and $remote.Out) {
     Paso "Ya existe un remoto 'origin'"
-    Info $remote
+    Info $remote.Out
     Write-Host ""
     $r = Read-Host "  ¿Hacer push al remoto existente? (s/n)"
     if ($r -ne 's') { Info "Cancelado, no se tocó nada."; exit 0 }
-    git push -u origin HEAD
-    if ($LASTEXITCODE -ne 0) { Mal "El push falló."; exit 1 }
+    $pushear = Invoke-Git @('push', '-u', 'origin', 'HEAD')
+    if ($pushear.Code -ne 0) {
+        Mal "El push falló:"
+        Info $pushear.Out
+        exit 1
+    }
     Ok "Subido"
     exit 0
 }
@@ -148,10 +178,11 @@ if (-not $gh) {
     Info "Abrí la URL a mano (este script no lanza procesos ni abre ventanas)."
     exit 0
 }
-Ok ("gh " + (gh --version | Select-Object -First 1))
+Ok ((Invoke-Gh @('--version')).Out -split "`n" | Select-Object -First 1)
 
 # ---------- 7. sesión de gh ----------
-$auth = Call-Gh @('auth', 'status')
+Paso "Verificando la sesión de GitHub"
+$auth = Invoke-Gh @('auth', 'status')
 if ($auth.Code -ne 0) {
     Aviso "gh está instalado pero no tiene sesión iniciada."
     Write-Host ""
@@ -161,17 +192,23 @@ if ($auth.Code -ne 0) {
     Info "Después volvé a correr este script. No hay nada roto: no se tocó el repo."
     exit 1
 }
-$u = Call-Gh @('api', 'user', '--jq', '.login')
-$usuario = if ($u.Code -eq 0) { $u.Out } else { '' }
+$u = Invoke-Gh @('api', 'user', '--jq', '.login')
+$usuario = if ($u.Code -eq 0 -and $u.Out) { $u.Out } else { '' }
 if ($usuario) { Ok "Sesión iniciada como $usuario" } else { $usuario = 'TU-USUARIO' }
 
 # ---------- 8. confirmación ----------
 Paso "Resumen"
 Info "Repositorio : $Nombre"
 Info "Visibilidad : $visibilidad"
-Info "Rama        : $(git rev-parse --abbrev-ref HEAD)"
-Info "Commits     : $(git rev-list --count HEAD)"
+Info "Rama        : $((Invoke-Git @('rev-parse', '--abbrev-ref', 'HEAD')).Out)"
+Info "Commits     : $((Invoke-Git @('rev-list', '--count', 'HEAD')).Out)"
 Info "Destino     : github.com/$usuario/$Nombre"
+
+if ($DryRun) {
+    Write-Host ""
+    Ok "Dry run: no se crea ni se sube nada. Todo lo anterior funcionó."
+    exit 0
+}
 
 if (-not $Si) {
     Write-Host ""
@@ -184,9 +221,10 @@ Paso "Creando el repositorio y subiendo"
 $argsGh = @('repo', 'create', $Nombre, '--source', '.', '--remote', 'origin', '--push')
 if ($Publico) { $argsGh += '--public' } else { $argsGh += '--private' }
 
-& gh @argsGh
-if ($LASTEXITCODE -ne 0) {
+$creado = Invoke-Gh $argsGh
+if ($creado.Code -ne 0) {
     Mal "No se pudo crear o subir el repositorio."
+    if ($creado.Out) { Info $creado.Out }
     Info "Si el nombre ya existe en tu cuenta, probá con otro:  .\subir.ps1 -Nombre otro-nombre"
     exit 1
 }
@@ -195,10 +233,8 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host ""
 Write-Host "  LISTO" -ForegroundColor Green
 Write-Host "  ------------------------------------------------" -ForegroundColor DarkGray
-$url = ''
-$v = Call-Gh @('repo', 'view', $Nombre, '--json', 'url', '--jq', '.url')
-if ($v.Code -eq 0 -and $v.Out) { $url = $v.Out }
-if (-not $url) { $url = "https://github.com/$usuario/$Nombre" }
+$v = Invoke-Gh @('repo', 'view', $Nombre, '--json', 'url', '--jq', '.url')
+$url = if ($v.Code -eq 0 -and $v.Out) { $v.Out } else { "https://github.com/$usuario/$Nombre" }
 Info "Repo     : $url"
 Info "Interfaz : $url/tree/main/site"
 Write-Host ""
