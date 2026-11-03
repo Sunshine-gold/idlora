@@ -597,7 +597,40 @@ button:active, .btn:active { transform: translateY(1px); }
 
 /* ---------------- flow ---------------- */
 
-.flow-controls { display: flex; gap: 12px; align-items: center; margin: 8px 0 24px; flex-wrap: wrap; }
+.player {
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 18px 20px 14px;
+  box-shadow: var(--e2);
+  margin: 4px 0 22px;
+}
+
+.p-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.p-num { font-size: 12px; letter-spacing: .14em; color: var(--ink-3); }
+.p-titles { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.p-titles b { font-size: 17px; font-weight: 600; line-height: 1.3; }
+.p-titles span { font-size: 14px; color: var(--ink-2); }
+.p-tools { margin-left: auto; display: flex; gap: 8px; }
+
+.p-stage { display: block; width: 100%; max-width: 1040px; height: auto; margin: 16px auto 6px; }
+.p-mid { fill: var(--ink-3); font-size: 9px; letter-spacing: .22em; text-anchor: middle; }
+.p-stage text { font-family: var(--mono); }
+.p-box { fill: var(--surface-2); stroke: var(--line-hi); }
+.p-lbl { fill: var(--ink-3); font-size: 9px; letter-spacing: .16em; }
+.p-cap { fill: var(--ink-1); font-size: 11px; letter-spacing: .06em; text-anchor: middle; }
+.p-track { stroke: var(--line-hi); stroke-width: 1.2; stroke-dasharray: 3 6; }
+.p-pkt { fill: var(--accent); }
+.p-ticks rect { fill: var(--line); transition: fill var(--dur-1) var(--ease); }
+.p-ticks rect.on { fill: var(--accent); }
+
+.p-foot { display: flex; align-items: center; gap: 14px; margin-top: 6px; }
+.p-scrub { flex: 1; min-width: 0; accent-color: var(--accent); }
+.p-clock { font-size: 12px; letter-spacing: .1em; color: var(--ink-3); white-space: nowrap; }
+
+.p-branch { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.p-branch[hidden] { display: none; }
+.p-branch-lbl { font-size: 13px; color: var(--ink-3); }
 
 .rail { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 
@@ -970,6 +1003,11 @@ footer.site {
 @media (max-width: 620px) {
   .rail { grid-template-columns: 1fr; }
   pre, .code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .p-cap { font-size: 21px; }
+  .p-lbl { font-size: 15px; }
+  .p-mid { font-size: 13px; }
+  .p-stage { margin-top: 12px; }
+  .p-tools { margin-left: 0; width: 100%; }
 }
 
 @media (max-width: 520px) {

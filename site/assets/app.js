@@ -476,6 +476,7 @@
     btnFlujo.addEventListener("click", () => {
       const target = document.getElementById("flujo");
       if (target) target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+      playFlow();
     });
   }
 
@@ -574,41 +575,111 @@
     }
   });
 
-  /* ---------- flujo animado ---------- */
+  /* ---------- player del flujo ---------- */
+  const player = document.getElementById("player");
   const steps = Array.from(document.querySelectorAll(".step"));
   const btnPlay = document.getElementById("play");
   const btnReset = document.getElementById("reset");
-  let timers = [];
+  let playFlow = () => {};
 
-  function clearTimers() {
-    timers.forEach(t => clearTimeout(t));
-    timers = [];
-  }
+  if (player && steps.length === 7) {
+    const STEP_MS = 1400, TOTAL = 7 * STEP_MS;
+    const TITLES = steps.map(s => [
+      s.querySelector(".st-title").textContent,
+      s.querySelector(".st-sub").textContent
+    ]);
+    const PC = ["emite", "valida", "firma", "envía", "—", "apagada", "recibe"];
+    const ND = ["espera", "espera", "espera", "recibe", "verifica", "", "entrega"];
+    const el = id => document.getElementById(id);
+    const pNum = el("pNum"), pTitle = el("pTitle"), pSub = el("pSub");
+    const pPc = el("pPc"), pNode = el("pNode"), pPkt = el("pPkt"), pClock = el("pClock");
+    const pScrub = el("pScrub"), pBranch = el("pBranch");
+    const ticks = Array.from(document.querySelectorAll("#pTicks rect"));
+    const branches = Array.from(pBranch.querySelectorAll("[data-branch]"));
+    let pos = 0, playing = false, last = 0, branch = "a";
 
-  function resetFlow() {
-    clearTimers();
-    steps.forEach(s => s.classList.remove("lit", "done"));
-    if (btnPlay) btnPlay.textContent = "▶ Reproducir";
-  }
+    function paint(t) {
+      const i = Math.min(6, Math.floor(t / STEP_MS));
+      const f = (t % STEP_MS) / STEP_MS;
+      const x = i < 3 ? 0 : i === 3 ? f : i === 6 ? 1 - f : 1;
+      pPkt.setAttribute("cx", 150 + 340 * x);
 
-  function playFlow() {
-    resetFlow();
-    btnPlay.textContent = "▶ Reproduciendo…";
-    steps.forEach((s, i) => {
-      timers.push(setTimeout(() => {
-        steps.forEach(o => o.classList.remove("lit"));
-        if (i > 0) steps[i - 1].classList.add("done");
-        s.classList.add("lit");
-        if (i === steps.length - 1) {
-          btnPlay.textContent = "▶ Repetir";
-          steps[i].classList.add("done");
-        }
-      }, i * 900));
+      setText(pNum, "0" + (i + 1));
+      setText(pTitle, TITLES[i][0]);
+      setText(pSub, TITLES[i][1]);
+      setText(pPc, PC[i]);
+      setText(pNode, i === 5 ? (branch === "a" ? "mide 77 °C" : "pausa · encola") : ND[i]);
+      setText(pClock, (t / 1000).toFixed(1) + " s");
+
+      ticks.forEach((r, k) => r.classList.toggle("on", k === i));
+      steps.forEach((s, k) => {
+        s.classList.toggle("lit", k === i);
+        s.classList.toggle("done", k < i);
+      });
+      pBranch.hidden = i !== 5;
+      if (pScrub) pScrub.value = (t / STEP_MS).toFixed(3);
+    }
+
+    function togglePlay() {
+      if (!playing && pos >= TOTAL - 40) pos = 0;
+      playing = !playing;
+      btnPlay.textContent = playing ? "▮▮ Pausa" : "▶ Seguir";
+    }
+
+    playFlow = () => {
+      playing = true;
+      btnPlay.textContent = "▮▮ Pausa";
+    };
+
+    btnPlay.addEventListener("click", togglePlay);
+    btnReset.addEventListener("click", () => {
+      playing = false;
+      pos = 0;
+      btnPlay.textContent = "▶ Reproducir";
+      paint(0);
     });
-  }
 
-  if (btnPlay) btnPlay.addEventListener("click", playFlow);
-  if (btnReset) btnReset.addEventListener("click", resetFlow);
+    if (pScrub) pScrub.addEventListener("input", () => {
+      playing = false;
+      btnPlay.textContent = "▶ Seguir";
+      pos = Math.min(TOTAL - 1, pScrub.value * STEP_MS);
+      paint(pos);
+    });
+
+    branches.forEach(b => b.addEventListener("click", () => {
+      branch = b.dataset.branch;
+      branches.forEach(o => o.classList.toggle("active", o === b));
+      paint(pos);
+    }));
+
+    function readHash() {
+      const parts = location.hash.replace(/^#/, "").split("?");
+      if (parts[0] !== "flujo") return;
+      const q = new URLSearchParams(parts[1] || "");
+      const n = Number(q.get("paso"));
+      if (q.get("rama") === "b") branch = "b";
+      branches.forEach(o => o.classList.toggle("active", o.dataset.branch === branch));
+      if (n >= 1 && n <= 7) {
+        pos = (n - 1) * STEP_MS + 8;
+        paint(pos);
+        player.scrollIntoView({ block: "start" });
+      }
+    }
+
+    window.addEventListener("hashchange", readHash);
+    paint(pos);
+    readHash();
+
+    if (!reduced) {
+      scenes.push(t => {
+        const dt = last ? t - last : 0;
+        last = t;
+        if (playing) pos = (pos + dt) % TOTAL;
+        paint(pos);
+      });
+      start();
+    }
+  }
 
   /* ---------- filtro de compatibilidad ---------- */
   const chips = Array.from(document.querySelectorAll(".chip[data-filter]"));

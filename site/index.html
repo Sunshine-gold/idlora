@@ -280,10 +280,48 @@
       cuando la PC ya no está.</p>
     </div>
 
-    <div class="flow-controls">
-      <button class="btn primary" id="play">▶ Reproducir</button>
-      <button class="btn" id="reset">Reiniciar</button>
-      <span class="small dim">El paso 6 es el que cambia todo el modelo.</span>
+    <div class="player" id="player">
+      <div class="p-head">
+        <span class="p-num mono" id="pNum">01</span>
+        <div class="p-titles">
+          <b id="pTitle">Pedido</b>
+          <span id="pSub">Escribís la regla una vez, desde la PC.</span>
+        </div>
+        <div class="p-tools">
+          <button class="btn primary small" id="play">▶ Reproducir</button>
+          <button class="btn small" id="reset">Reiniciar</button>
+        </div>
+      </div>
+
+      <svg class="p-stage" viewBox="0 0 640 152" aria-hidden="true">
+        <rect class="p-box" x="16" y="46" width="134" height="58" rx="9"/>
+        <text class="p-lbl" x="26" y="38">PC</text>
+        <text class="p-cap" id="pPc" x="83" y="80">emite</text>
+        <path class="p-track" d="M150 75h340"/>
+        <text class="p-mid" x="320" y="62">USB · RED · COLA</text>
+        <rect class="p-box" x="490" y="38" width="134" height="74" rx="11"/>
+        <text class="p-lbl" x="500" y="30">NODO</text>
+        <text class="p-cap" id="pNode" x="557" y="80">espera</text>
+        <circle class="p-pkt" id="pPkt" cx="150" cy="75" r="3.6"/>
+        <g class="p-ticks" id="pTicks">
+          <rect x="150" y="118" width="48" height="2"/><rect x="206" y="118" width="48" height="2"/>
+          <rect x="262" y="118" width="48" height="2"/><rect x="318" y="118" width="48" height="2"/>
+          <rect x="374" y="118" width="48" height="2"/><rect x="430" y="118" width="48" height="2"/>
+          <rect x="486" y="118" width="48" height="2"/>
+        </g>
+      </svg>
+
+      <div class="p-foot">
+        <input class="p-scrub" id="pScrub" type="range" min="0" max="7" step="0.001" value="0"
+               aria-label="Recorrer los pasos del flujo">
+        <span class="p-clock mono" id="pClock">01 / 07</span>
+      </div>
+
+      <div class="p-branch" id="pBranch" hidden>
+        <span class="p-branch-lbl">Paso 6, dos finales:</span>
+        <button type="button" class="chip" data-branch="a">A · el nodo sigue</button>
+        <button type="button" class="chip active" data-branch="b">B · se queda sin batería</button>
+      </div>
     </div>
 
     <div class="rail">
