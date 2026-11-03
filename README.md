@@ -286,9 +286,12 @@ images/        recetas de imagen y scripts de instalación
 ## 13. Cómo ver la presentación
 
 Abrí `site/index.html` en cualquier navegador. No necesita servidor, ni internet, ni dependencias:
-todo está en tres archivos.
+todo está en la carpeta `site/`.
 
-Navegación: pestañas arriba, flechas `←` `→`, y cada bloque con borde abre su ficha técnica.
+Navegación: es un documento con scroll y una barra que marca la sección activa. Cada bloque con
+borde abre su ficha técnica en un panel; el panel se cierra con `Esc` y devuelve el foco al bloque.
+El flujo tiene un reproductor propio: play/pausa, arrastre, reinicio y dos finales posibles en el
+paso 6. También acepta enlaces directos: `site/index.html#flujo?paso=6&rama=b`.
 
 ---
 
@@ -330,3 +333,67 @@ cola y una tarea que sobreviva al apagado de la PC.
 
 Si algo de este documento suena a promesa, es un error de redacción: el proyecto se sostiene sobre
 lo que se puede probar.
+
+---
+
+## 16. La presentación: cómo está hecha y cómo se midió
+
+### Reglas del sitio
+
+- Sin dependencias, sin build, sin red. Tres archivos de código: `index.html`, `assets/styles.css`,
+  `assets/app.js`. Abre con `file://` y también por HTTP.
+- Nada de `<script type="module">` ni `fetch()`: el sitio entero funciona desde el disco.
+- Una sola familia tipográfica (Geist / Geist Mono, subset latin, SIL OFL), servida local.
+
+### Sistema visual
+
+Papel oscuro en capas, un solo acento (`#d9af75`) reservado a la acción y a la sección activa, y
+colores de capa que viven únicamente dentro de los diagramas. La elevación se expresa por superficie
+y borde, no por sombras grandes. Piso tipográfico de 12 px; el cuerpo respira a 16.
+
+### Movimiento
+
+Un solo `requestAnimationFrame` para todo el documento. El hero y el reproductor son funciones puras
+`render(t)` sobre el mismo reloj: no hay `setTimeout` encadenados, ni animaciones CSS que compitan.
+Con `prefers-reduced-motion: reduce` no se anima nada solo: el hero muestra un cuadro fijo y el
+reproductor se maneja a mano.
+
+### Presupuesto
+
+| Ítem | Tamaño | Límite |
+|---|---|---|
+| `index.html` + `styles.css` + `app.js` | **94,5 KB** | 95 KB |
+| Geist Sans + Geist Mono (subset) | 72,1 KB | aparte |
+| `og.png` 1200×630 | 265 KB | aparte |
+
+### Medición
+
+Lighthouse 13.6 sobre `http://127.0.0.1:8123`, preset móvil (412×823, 4G simulada, CPU ×4):
+
+| Categoría | Puntaje |
+|---|---|
+| Rendimiento | 93 |
+| Accesibilidad | **100** |
+| Buenas prácticas | 100 |
+| SEO | 100 |
+
+Métricas: LCP 1.643 ms, CLS **0**, TBT 250 ms. El CLS llegó a 0 al precargar las fuentes y pasar
+`font-display` a `optional`. Lighthouse corre axe-core adentro, así que el 100 de accesibilidad
+incluye sus reglas.
+
+### Verificado a mano
+
+- Sin scroll horizontal a 1440, 1100, 900, 820, 768, 700 y 500 px (`scrollWidth === clientWidth`).
+- Panel de ficha: `role="dialog"`, `aria-modal`, `inert` cerrado, foco atrapado, `Esc` cierra y
+  devuelve el foco al disparador. Los 7 pasos y las 6 fases son `<button>` reales.
+- Impresión: 15 páginas, 884 KB, tinta oscura sobre blanco y sin el grano de fondo.
+- Enlaces profundos probados: `#flujo?paso=3`, `#flujo?paso=6&rama=a`, `#flujo?paso=6&rama=b`.
+
+### Lo que no se pudo medir
+
+- Chrome headless no baja de 500 px de ancho: 360 px queda sin captura real, aunque no hay reglas
+  nuevas por debajo de 520.
+- El reloj de animación no avanza en capturas headless (solo corre con la pestaña visible). Las
+  posiciones del reproductor se verificaron por estado del DOM, no cuadro por cuadro.
+- `og:image` es una ruta relativa porque el sitio no tiene dominio propio. Si algún día lo tiene,
+  conviene volverla absoluta para los scrapers.
