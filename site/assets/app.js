@@ -399,18 +399,28 @@
   }
 
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape") closePanel();
+    if (e.key === "Escape" && panel.classList.contains("open")) {
+      e.preventDefault();
+      closePanel();
+    }
   });
 
   /* ---------- panel de detalle ---------- */
   const panel = document.getElementById("panel");
+  const scrim = document.getElementById("scrim");
   const pKind = panel.querySelector(".p-kind");
-  const pTitle = panel.querySelector("h3");
+  const pTitle = panel.querySelector("#panel-title");
   const pBody = panel.querySelector(".body");
+  const closeBtn = panel.querySelector("button.close");
+  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  let lastFocus = null;
 
   function openPanel(key) {
     const d = NODES[key];
     if (!d) return;
+
+    if (!panel.classList.contains("open")) lastFocus = document.activeElement;
+
     pKind.textContent = d.kind;
     pTitle.textContent = d.title;
 
@@ -423,21 +433,57 @@
       html += "</dl>";
     }
     pBody.innerHTML = html;
+
     panel.classList.add("open");
+    panel.removeAttribute("inert");
+    panel.removeAttribute("aria-hidden");
+    scrim.hidden = false;
     document.body.classList.add("panel-open");
     pBody.scrollTop = 0;
+    closeBtn.focus({ preventScroll: true });
 
     document.querySelectorAll(".node.sel").forEach(n => n.classList.remove("sel"));
     document.querySelectorAll(`[data-node="${key}"]`).forEach(n => n.classList.add("sel"));
   }
 
   function closePanel() {
+    if (!panel.classList.contains("open")) return;
     panel.classList.remove("open");
+    panel.setAttribute("inert", "");
+    panel.setAttribute("aria-hidden", "true");
+    scrim.hidden = true;
     document.body.classList.remove("panel-open");
     document.querySelectorAll(".node.sel").forEach(n => n.classList.remove("sel"));
+
+    if (lastFocus && lastFocus.isConnected) lastFocus.focus({ preventScroll: true });
+    lastFocus = null;
   }
 
-  panel.querySelector("button.close").addEventListener("click", closePanel);
+  closeBtn.addEventListener("click", closePanel);
+  if (scrim) scrim.addEventListener("click", closePanel);
+
+  panel.addEventListener("keydown", e => {
+    if (e.key !== "Tab" || !panel.classList.contains("open")) return;
+    const items = Array.from(panel.querySelectorAll(FOCUSABLE)).filter(el => !el.hidden);
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (!panel.contains(document.activeElement)) {
+      e.preventDefault();
+      first.focus();
+    } else if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  document.querySelectorAll("[data-node]").forEach(el => {
+    el.setAttribute("aria-haspopup", "dialog");
+    el.setAttribute("aria-controls", "panel");
+  });
 
   document.addEventListener("click", e => {
     const el = e.target.closest("[data-node]");

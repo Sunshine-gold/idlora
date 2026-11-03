@@ -9,6 +9,8 @@
 </head>
 <body>
 
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
 <header class="topbar">
   <a class="brand" href="#vision" aria-label="IDLORA — ir al inicio">
     <span class="logo" aria-hidden="true">◈</span> IDLORA
@@ -25,7 +27,7 @@
   </nav>
 </header>
 
-<main>
+<main id="contenido">
 
   <!-- ================= VISIÓN ================= -->
   <section id="vision" class="section">
@@ -288,41 +290,41 @@
     </div>
 
     <div class="rail">
-      <div class="step" data-node="flow1">
-        <div class="num">01</div>
-        <div class="st-title">Pedido</div>
-        <div class="st-sub">Escribís la regla una vez, desde la PC.</div>
-      </div>
-      <div class="step" data-node="flow2">
-        <div class="num">02</div>
-        <div class="st-title">Permiso</div>
-        <div class="st-sub">La política valida <code>gpu:read</code> y <code>notify:send</code>.</div>
-      </div>
-      <div class="step" data-node="flow3">
-        <div class="num">03</div>
-        <div class="st-title">Firma</div>
-        <div class="st-sub">Se emite la tarea firmada, con vencimiento.</div>
-      </div>
-      <div class="step" data-node="flow4">
-        <div class="num">04</div>
-        <div class="st-title">Envío</div>
-        <div class="st-sub">USB si está cerca, red si no. Cola si no hay enlace.</div>
-      </div>
-      <div class="step" data-node="flow5">
-        <div class="num">05</div>
-        <div class="st-title">Ejecución</div>
-        <div class="st-sub">El nodo verifica, acepta y muestrea cada 5 s.</div>
-      </div>
-      <div class="step" data-node="flow6">
-        <div class="num">06</div>
-        <div class="st-title">Autonomía</div>
-        <div class="st-sub">Apagás la PC. El teléfono sigue midiendo y guardando.</div>
-      </div>
-      <div class="step" data-node="flow7">
-        <div class="num">07</div>
-        <div class="st-title">Sincronía</div>
-        <div class="st-sub">Al volver, entrega la serie, notifica y queda en auditoría.</div>
-      </div>
+      <button type="button" class="step" data-node="flow1">
+        <span class="num">01</span>
+        <span class="st-title">Pedido</span>
+        <span class="st-sub">Escribís la regla una vez, desde la PC.</span>
+      </button>
+      <button type="button" class="step" data-node="flow2">
+        <span class="num">02</span>
+        <span class="st-title">Permiso</span>
+        <span class="st-sub">La política valida <code>gpu:read</code> y <code>notify:send</code>.</span>
+      </button>
+      <button type="button" class="step" data-node="flow3">
+        <span class="num">03</span>
+        <span class="st-title">Firma</span>
+        <span class="st-sub">Se emite la tarea firmada, con vencimiento.</span>
+      </button>
+      <button type="button" class="step" data-node="flow4">
+        <span class="num">04</span>
+        <span class="st-title">Envío</span>
+        <span class="st-sub">USB si está cerca, red si no. Cola si no hay enlace.</span>
+      </button>
+      <button type="button" class="step" data-node="flow5">
+        <span class="num">05</span>
+        <span class="st-title">Ejecución</span>
+        <span class="st-sub">El nodo verifica, acepta y muestrea cada 5 s.</span>
+      </button>
+      <button type="button" class="step" data-node="flow6">
+        <span class="num">06</span>
+        <span class="st-title">Autonomía</span>
+        <span class="st-sub">Apagás la PC. El teléfono sigue midiendo y guardando.</span>
+      </button>
+      <button type="button" class="step" data-node="flow7">
+        <span class="num">07</span>
+        <span class="st-title">Sincronía</span>
+        <span class="st-sub">Al volver, entrega la serie, notifica y queda en auditoría.</span>
+      </button>
     </div>
 
     <p class="flow-note">
@@ -566,48 +568,48 @@
     </div>
 
     <div class="timeline">
-      <div class="phase p1" data-node="ph1">
-        <div class="card quiet">
-          <div class="ph-head"><h3>Fase 0 · Núcleo sin tocar el teléfono</h3><span class="pill ok">riesgo cero</span></div>
-          <p class="ph-goal">Termux + proot en Android stock. El núcleo, el agente y la cola funcionan de punta a punta.</p>
-          <p class="ph-exit">✓ sale cuando: una tarea sobrevive al apagado de la PC y sincroniza al volver</p>
-        </div>
-      </div>
-      <div class="phase p2" data-node="ph2">
-        <div class="card quiet">
-          <div class="ph-head"><h3>Fase 1 · Un nodo de verdad</h3><span class="pill data">riesgo bajo</span></div>
-          <p class="ph-goal">Servicio persistente, arranque automático, watchdog, carga limitada de batería y métricas propias.</p>
-          <p class="ph-exit">✓ sale cuando: 7 días de uptime sin intervención</p>
-        </div>
-      </div>
-      <div class="phase p3" data-node="ph3">
-        <div class="card quiet">
-          <div class="ph-head"><h3>Fase 2 · Catálogo y contrato público</h3><span class="pill data">riesgo bajo</span></div>
-          <p class="ph-goal">Fichas de dispositivo, manifiesto de módulos, validador de esquema y guía de contribución.</p>
-          <p class="ph-exit">✓ sale cuando: un tercero agrega una ficha válida sin ayuda</p>
-        </div>
-      </div>
-      <div class="phase p4" data-node="ph4">
-        <div class="card quiet">
-          <div class="ph-head"><h3>Fase 3 · Linux real en el Redmi Note 9</h3><span class="pill risk">riesgo alto</span></div>
-          <p class="ph-goal">Evaluar postmarketOS / mainline. Documentar qué funciona y qué no, sin prometer milagros.</p>
-          <p class="ph-exit">✓ sale cuando: hay imagen reproducible + rollback probado</p>
-        </div>
-      </div>
-      <div class="phase p5" data-node="ph5">
-        <div class="card quiet">
-          <div class="ph-head"><h3>Fase 4 · Segunda familia de hardware</h3><span class="pill violet">riesgo medio</span></div>
-          <p class="ph-goal">Un adaptador nuevo sin tocar el núcleo. La prueba real de que la arquitectura es modular.</p>
-          <p class="ph-exit">✓ sale cuando: el mismo módulo corre en dos plataformas distintas</p>
-        </div>
-      </div>
-      <div class="phase p6" data-node="ph6">
-        <div class="card quiet">
-          <div class="ph-head"><h3>Fase 5 · Comunidad</h3><span class="pill data">continuo</span></div>
-          <p class="ph-goal">Proyectos publicados, revisión entre pares, plantillas de instalación y banco de pruebas.</p>
-          <p class="ph-exit">✓ sale cuando: hay más contribuciones externas que propias</p>
-        </div>
-      </div>
+      <button type="button" class="phase p1" data-node="ph1">
+        <span class="card quiet">
+          <span class="ph-head"><span class="ph-title">Fase 0 · Núcleo sin tocar el teléfono</span><span class="pill ok">riesgo cero</span></span>
+          <span class="ph-goal">Termux + proot en Android stock. El núcleo, el agente y la cola funcionan de punta a punta.</span>
+          <span class="ph-exit">✓ sale cuando: una tarea sobrevive al apagado de la PC y sincroniza al volver</span>
+        </span>
+      </button>
+      <button type="button" class="phase p2" data-node="ph2">
+        <span class="card quiet">
+          <span class="ph-head"><span class="ph-title">Fase 1 · Un nodo de verdad</span><span class="pill data">riesgo bajo</span></span>
+          <span class="ph-goal">Servicio persistente, arranque automático, watchdog, carga limitada de batería y métricas propias.</span>
+          <span class="ph-exit">✓ sale cuando: 7 días de uptime sin intervención</span>
+        </span>
+      </button>
+      <button type="button" class="phase p3" data-node="ph3">
+        <span class="card quiet">
+          <span class="ph-head"><span class="ph-title">Fase 2 · Catálogo y contrato público</span><span class="pill data">riesgo bajo</span></span>
+          <span class="ph-goal">Fichas de dispositivo, manifiesto de módulos, validador de esquema y guía de contribución.</span>
+          <span class="ph-exit">✓ sale cuando: un tercero agrega una ficha válida sin ayuda</span>
+        </span>
+      </button>
+      <button type="button" class="phase p4" data-node="ph4">
+        <span class="card quiet">
+          <span class="ph-head"><span class="ph-title">Fase 3 · Linux real en el Redmi Note 9</span><span class="pill risk">riesgo alto</span></span>
+          <span class="ph-goal">Evaluar postmarketOS / mainline. Documentar qué funciona y qué no, sin prometer milagros.</span>
+          <span class="ph-exit">✓ sale cuando: hay imagen reproducible + rollback probado</span>
+        </span>
+      </button>
+      <button type="button" class="phase p5" data-node="ph5">
+        <span class="card quiet">
+          <span class="ph-head"><span class="ph-title">Fase 4 · Segunda familia de hardware</span><span class="pill violet">riesgo medio</span></span>
+          <span class="ph-goal">Un adaptador nuevo sin tocar el núcleo. La prueba real de que la arquitectura es modular.</span>
+          <span class="ph-exit">✓ sale cuando: el mismo módulo corre en dos plataformas distintas</span>
+        </span>
+      </button>
+      <button type="button" class="phase p6" data-node="ph6">
+        <span class="card quiet">
+          <span class="ph-head"><span class="ph-title">Fase 5 · Comunidad</span><span class="pill data">continuo</span></span>
+          <span class="ph-goal">Proyectos publicados, revisión entre pares, plantillas de instalación y banco de pruebas.</span>
+          <span class="ph-exit">✓ sale cuando: hay más contribuciones externas que propias</span>
+        </span>
+      </button>
     </div>
 
     <div class="callout" style="margin-top:24px">
@@ -623,13 +625,15 @@
   <span>sin dependencias · abre offline</span>
 </footer>
 
-<aside id="panel" class="panel" aria-live="polite">
+<div id="scrim" class="scrim" hidden></div>
+
+<aside id="panel" class="panel" role="dialog" aria-modal="true" aria-labelledby="panel-title" aria-hidden="true" inert>
   <header>
     <div>
       <div class="p-kind">—</div>
-      <h3>—</h3>
+      <h3 id="panel-title">—</h3>
     </div>
-    <button class="close" aria-label="Cerrar">✕</button>
+    <button type="button" class="close" aria-label="Cerrar ficha">✕</button>
   </header>
   <div class="body"></div>
 </aside>
