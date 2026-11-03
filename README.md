@@ -362,7 +362,7 @@ reproductor se maneja a mano.
 
 | Ítem | Tamaño | Límite |
 |---|---|---|
-| `index.html` + `styles.css` + `app.js` | **94,5 KB** | 95 KB |
+| `index.html` + `styles.css` + `app.js` | **94,8 KB** | 95 KB |
 | Geist Sans + Geist Mono (subset) | 72,1 KB | aparte |
 | `og.png` 1200×630 | 265 KB | aparte |
 
@@ -395,5 +395,6 @@ incluye sus reglas.
   nuevas por debajo de 520.
 - El reloj de animación no avanza en capturas headless (solo corre con la pestaña visible). Las
   posiciones del reproductor se verificaron por estado del DOM, no cuadro por cuadro.
-- `og:image` es una ruta relativa porque el sitio no tiene dominio propio. Si algún día lo tiene,
-  conviene volverla absoluta para los scrapers.
+- La tarjeta social no se pudo previsualizar desde acá: `og:image` ya apunta a la URL absoluta de
+  GitHub Pages, pero LinkedIn, X y Slack cachean el resultado viejo. Se refresca con el Post
+  Inspector de LinkedIn o el Card Validator de X.
