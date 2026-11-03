@@ -105,21 +105,21 @@
 
     <div class="grid3" style="margin-top:26px">
       <div class="card">
-        <span class="pill amber">El problema</span>
+        <span class="pill risk">El problema</span>
         <h3 style="margin-top:10px">Capacidad tirada</h3>
         <p class="small dim" style="margin:0">Un teléfono de gama media de 2019 tiene 3–4 GB de RAM,
         64–128 GB de almacenamiento, cuatro núcleos, WiFi, Bluetooth y sensores. Eso es más de lo que
         tenía un servidor doméstico hace quince años. Y casi siempre termina en un cajón.</p>
       </div>
       <div class="card">
-        <span class="pill cyan">La propuesta</span>
+        <span class="pill data">La propuesta</span>
         <h3 style="margin-top:10px">Un nodo, no un accesorio</h3>
         <p class="small dim" style="margin:0">Un sistema propio en el dispositivo, con tareas propias
         que siguen corriendo aunque la PC esté apagada. Se comunican, se sincronizan y se coordinan,
         pero ninguno depende del otro para existir.</p>
       </div>
       <div class="card">
-        <span class="pill green">El resultado</span>
+        <span class="pill ok">El resultado</span>
         <h3 style="margin-top:10px">Conocimiento compartido</h3>
         <p class="small dim" style="margin:0">Cada dispositivo probado deja una ficha pública: qué sistema
         corre, qué funciona, qué no, cómo se recupera. Lo que aprende uno, lo aprovecha el siguiente.</p>
@@ -332,7 +332,7 @@
 
     <div class="grid2" style="margin-top:26px">
       <div class="card">
-        <span class="pill green">Qué gana la PC</span>
+        <span class="pill ok">Qué gana la PC</span>
         <ul>
           <li>El muestreo no consume CPU ni RAM de Windows.</li>
           <li>La regla se evalúa aunque la PC esté en suspensión o apagada.</li>
@@ -340,7 +340,7 @@
         </ul>
       </div>
       <div class="card">
-        <span class="pill red">Qué puede fallar</span>
+        <span class="pill risk">Qué puede fallar</span>
         <ul>
           <li>El nodo se reinicia y pierde la tarea en memoria → mitigado con cola en disco.</li>
           <li>El enlace vuelve con datos viejos → se marcan por antigüedad.</li>
@@ -422,42 +422,42 @@
           <tr data-state="experimental">
             <td><strong>Xiaomi Redmi Note 9</strong><br><span class="small dim">merlin · objetivo inicial</span></td>
             <td>MediaTek Helio G85<br><span class="small dim">ARM64 · 3–4 GB</span></td>
-            <td><span class="pill amber">Experimental</span></td>
+            <td><span class="pill risk">! experimental</span></td>
             <td>Fase 0 hoy · Linux nativo incierto</td>
             <td>Soporte mainline del SoC; anti-rollback</td>
           </tr>
           <tr data-state="pruebas">
             <td><strong>Xiaomi Redmi Note 9S / Pro</strong><br><span class="small dim">curtana / excalibur</span></td>
             <td>Snapdragon 720G<br><span class="small dim">ARM64 · 4–6 GB</span></td>
-            <td><span class="pill cyan">En pruebas</span></td>
+            <td><span class="pill data">~ en pruebas</span></td>
             <td>Fase 0 → root → Linux</td>
             <td>Firmware y drivers del SoC</td>
           </tr>
           <tr data-state="fase0">
             <td><strong>Tablets Android viejas</strong><br><span class="small dim">varios fabricantes</span></td>
             <td>ARM32 / ARM64<br><span class="small dim">1–3 GB</span></td>
-            <td><span class="pill">Solo fase 0</span></td>
+            <td><span class="pill">· fase 0</span></td>
             <td>Termux + proot, sin root</td>
             <td>RAM escasa; poca actualización</td>
           </tr>
           <tr data-state="verificado">
             <td><strong>Raspberry Pi 3 / 4 / 5</strong></td>
             <td>ARM64<br><span class="small dim">1–8 GB</span></td>
-            <td><span class="pill green">Verificado</span></td>
+            <td><span class="pill ok">✓ verificado</span></td>
             <td>Linux nativo, sin riesgo</td>
             <td>Alimentación y disipación</td>
           </tr>
           <tr data-state="verificado">
             <td><strong>PC x86 de escritorio</strong><br><span class="small dim">equipos recuperados</span></td>
             <td>x86_64<br><span class="small dim">4–16 GB</span></td>
-            <td><span class="pill green">Verificado</span></td>
+            <td><span class="pill ok">✓ verificado</span></td>
             <td>Linux nativo</td>
             <td>Consumo eléctrico</td>
           </tr>
           <tr data-state="experimental">
             <td><strong>Samsung Galaxy A / S antiguos</strong></td>
             <td>Exynos / Snapdragon<br><span class="small dim">2–4 GB</span></td>
-            <td><span class="pill amber">Experimental</span></td>
+            <td><span class="pill risk">! experimental</span></td>
             <td>Depende del modelo exacto</td>
             <td>Knox, bootloader, variantes regionales</td>
           </tr>
@@ -535,7 +535,7 @@
     <h3 style="margin-bottom:10px">Antes de flashear cualquier cosa</h3>
     <div class="grid2">
       <div class="card quiet">
-        <h3 style="color:var(--green)">Checklist de entrada</h3>
+        <h3 style="color:var(--ok)">Checklist de entrada</h3>
         <ul class="small">
           <li>Firmware original descargado y con hash verificado</li>
           <li>Método de recuperación identificado y leído completo</li>
@@ -545,7 +545,7 @@
         </ul>
       </div>
       <div class="card quiet">
-        <h3 style="color:var(--red)">Señales de alto</h3>
+        <h3 style="color:var(--risk)">Señales de alto</h3>
         <ul class="small">
           <li>No hay firmware stock disponible → no se empieza</li>
           <li>La guía pide desactivar verificaciones de seguridad del sistema</li>
@@ -568,28 +568,28 @@
     <div class="timeline">
       <div class="phase p1" data-node="ph1">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 0 · Núcleo sin tocar el teléfono</h3><span class="pill green">riesgo cero</span></div>
+          <div class="ph-head"><h3>Fase 0 · Núcleo sin tocar el teléfono</h3><span class="pill ok">riesgo cero</span></div>
           <p class="ph-goal">Termux + proot en Android stock. El núcleo, el agente y la cola funcionan de punta a punta.</p>
           <p class="ph-exit">✓ sale cuando: una tarea sobrevive al apagado de la PC y sincroniza al volver</p>
         </div>
       </div>
       <div class="phase p2" data-node="ph2">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 1 · Un nodo de verdad</h3><span class="pill amber">riesgo bajo</span></div>
+          <div class="ph-head"><h3>Fase 1 · Un nodo de verdad</h3><span class="pill data">riesgo bajo</span></div>
           <p class="ph-goal">Servicio persistente, arranque automático, watchdog, carga limitada de batería y métricas propias.</p>
           <p class="ph-exit">✓ sale cuando: 7 días de uptime sin intervención</p>
         </div>
       </div>
       <div class="phase p3" data-node="ph3">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 2 · Catálogo y contrato público</h3><span class="pill cyan">riesgo bajo</span></div>
+          <div class="ph-head"><h3>Fase 2 · Catálogo y contrato público</h3><span class="pill data">riesgo bajo</span></div>
           <p class="ph-goal">Fichas de dispositivo, manifiesto de módulos, validador de esquema y guía de contribución.</p>
           <p class="ph-exit">✓ sale cuando: un tercero agrega una ficha válida sin ayuda</p>
         </div>
       </div>
       <div class="phase p4" data-node="ph4">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 3 · Linux real en el Redmi Note 9</h3><span class="pill red">riesgo alto</span></div>
+          <div class="ph-head"><h3>Fase 3 · Linux real en el Redmi Note 9</h3><span class="pill risk">riesgo alto</span></div>
           <p class="ph-goal">Evaluar postmarketOS / mainline. Documentar qué funciona y qué no, sin prometer milagros.</p>
           <p class="ph-exit">✓ sale cuando: hay imagen reproducible + rollback probado</p>
         </div>
@@ -603,7 +603,7 @@
       </div>
       <div class="phase p6" data-node="ph6">
         <div class="card quiet">
-          <div class="ph-head"><h3>Fase 5 · Comunidad</h3><span class="pill cyan">continuo</span></div>
+          <div class="ph-head"><h3>Fase 5 · Comunidad</h3><span class="pill data">continuo</span></div>
           <p class="ph-goal">Proyectos publicados, revisión entre pares, plantillas de instalación y banco de pruebas.</p>
           <p class="ph-exit">✓ sale cuando: hay más contribuciones externas que propias</p>
         </div>
