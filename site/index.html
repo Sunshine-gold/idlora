@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IDLORA — convertir hardware olvidado en tecnología útil</title>
 <meta name="description" content="Infraestructura abierta para reutilizar celulares, tablets y SBC viejos como nodos de cómputo autónomos.">
+<meta name="theme-color" content="#0b0d11">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0d11'/%3E%3Ctext x='16' y='24' font-size='19' text-anchor='middle' fill='%23d9af75'%3E%E2%97%88%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IDLORA — hardware olvidado, trabajo real">
+<meta property="og:description" content="Celulares, tablets y SBC viejos como nodos autónomos: tareas firmadas, permisos acotados y trabajo que sigue cuando la PC se apaga.">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -46,61 +57,47 @@
           No es una pantalla secundaria.<br>
           Es darle a un teléfono de 2019 un trabajo real.
         </p>
+        <div class="hero-cta">
+          <button type="button" class="btn primary" id="btnFlujo">Ver el flujo completo</button>
+          <a class="btn ghost" href="#arquitectura">Cómo está armado</a>
+        </div>
       </div>
-      <div class="phone-art">
-        <svg viewBox="0 0 260 320" width="260" height="320" role="img" aria-label="Teléfono convertido en nodo conectado a una PC">
-          <defs>
-            <linearGradient id="gg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#45d6c8" stop-opacity=".9"/>
-              <stop offset="1" stop-color="#a98bff" stop-opacity=".9"/>
-            </linearGradient>
-            <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          </defs>
-
-          <g opacity=".95">
-            <rect x="8" y="34" width="86" height="54" rx="7" fill="#141b27" stroke="#2a3549"/>
-            <rect x="14" y="40" width="74" height="38" rx="4" fill="#0b1018" stroke="#233043"/>
-            <line x1="14" y1="56" x2="52" y2="56" stroke="#45d6c8" stroke-width="1.6" opacity=".7"/>
-            <line x1="14" y1="64" x2="66" y2="64" stroke="#f6b93b" stroke-width="1.6" opacity=".5"/>
-            <line x1="14" y1="72" x2="40" y2="72" stroke="#5f6b80" stroke-width="1.6"/>
-            <rect x="34" y="88" width="34" height="5" rx="2.5" fill="#1e2837" stroke="#2a3549"/>
-            <text x="51" y="112" fill="#8c9ab1" font-family="monospace" font-size="9" text-anchor="middle">PC · AGENTE</text>
+      <div class="stage" id="hero">
+        <svg class="stage-svg" viewBox="0 0 340 364" role="img" aria-labelledby="heroT">
+          <title id="heroT">La PC emite una tarea firmada, el teléfono la ejecuta y sigue midiendo cuando la PC se apaga.</title>
+          <rect class="frame" x=".5" y=".5" width="339" height="363" rx="20"/>
+          <path class="tick" d="M20 20h14M20 20v14M320 20h-14M320 20v14M20 344h14M20 344v-14M320 344h-14M320 344v-14"/>
+          <text class="lbl" x="32" y="40">TAREA</text>
+          <text class="lbl" x="308" y="40" text-anchor="end">#TSK_01J8Z3</text>
+          <path class="hair" d="M32 54h276"/>
+          <g class="pc">
+            <rect class="box" x="38" y="136" width="94" height="58" rx="8"/>
+            <rect class="glass" x="45" y="143" width="80" height="44" rx="4"/>
+            <path class="blip" d="M52 156h34M52 165h46M52 174h22"/>
+            <text class="cap" x="85" y="212">PC · AGENTE</text>
           </g>
-
-          <path d="M94 74 C 128 74, 132 120, 150 140" fill="none" stroke="url(#gg)" stroke-width="1.8" stroke-dasharray="5 5" filter="url(#glow)">
-            <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.2s" repeatCount="indefinite"/>
-          </path>
-
-          <g>
-            <rect x="146" y="96" width="104" height="196" rx="16" fill="#101521" stroke="#3a4a66" stroke-width="1.5"/>
-            <rect x="152" y="104" width="92" height="180" rx="12" fill="#080b11" stroke="#22304a"/>
-            <rect x="186" y="100" width="24" height="4" rx="2" fill="#22304a"/>
-
-            <circle cx="198" cy="150" r="17" fill="none" stroke="#f6b93b" stroke-width="1.4" opacity=".85" filter="url(#glow)"/>
-            <circle cx="198" cy="150" r="5" fill="#f6b93b"/>
-            <text x="198" y="182" fill="#f6b93b" font-family="monospace" font-size="8" text-anchor="middle">NÚCLEO</text>
-
-            <g fill="none" stroke="#a98bff" stroke-width="1.3" opacity=".9">
-              <rect x="160" y="200" width="30" height="22" rx="4"/>
-              <rect x="198" y="200" width="30" height="22" rx="4"/>
-              <rect x="160" y="234" width="30" height="22" rx="4"/>
-              <rect x="198" y="234" width="30" height="22" rx="4"/>
+          <path id="heroLink" class="link" d="M132 165C172 165 178 192 212 200"/>
+          <circle id="heroPkt" class="pkt" cx="132" cy="165" r="2.6" opacity="0"/>
+          <g class="phone">
+            <rect class="body" x="212" y="100" width="96" height="200" rx="18"/>
+            <rect class="glass" x="219" y="108" width="82" height="184" rx="12"/>
+            <circle id="heroDot" class="dot" cx="232" cy="128" r="2.6"/>
+            <text class="lbl" x="240" y="131">NODO</text>
+            <text id="heroStep" class="stepname" x="260" y="174">PEDIDO</text>
+            <text id="heroVal" class="val" x="260" y="208">—</text>
+            <text class="lbl2" x="260" y="224">GPU · °C</text>
+            <g class="mods">
+              <rect x="230" y="240" width="26" height="16" rx="3"/>
+              <rect x="264" y="240" width="26" height="16" rx="3"/>
+              <rect x="230" y="264" width="26" height="16" rx="3"/>
+              <rect x="264" y="264" width="26" height="16" rx="3"/>
+              <text x="243" y="251">MON</text>
+              <text x="277" y="251">FS</text>
+              <text x="243" y="275">NET</text>
+              <text x="277" y="275">AUTO</text>
             </g>
-            <g fill="#a98bff" font-family="monospace" font-size="7" text-anchor="middle" opacity=".8">
-              <text x="175" y="215">MON</text>
-              <text x="213" y="215">FS</text>
-              <text x="175" y="249">NET</text>
-              <text x="213" y="249">AUTO</text>
-            </g>
-            <line x1="198" y1="167" x2="175" y2="200" stroke="#2f4a55" stroke-width="1"/>
-            <line x1="198" y1="167" x2="213" y2="200" stroke="#2f4a55" stroke-width="1"/>
-            <line x1="198" y1="167" x2="175" y2="234" stroke="#2f4a55" stroke-width="1"/>
-            <line x1="198" y1="167" x2="213" y2="234" stroke="#2f4a55" stroke-width="1"/>
-
-            <text x="198" y="276" fill="#5f6b80" font-family="monospace" font-size="7" text-anchor="middle">LINUX · ARM</text>
           </g>
-
-          <text x="198" y="310" fill="#5f6b80" font-family="monospace" font-size="8" text-anchor="middle">NODO AUTÓNOMO</text>
+          <text id="heroCap" class="cap" x="170" y="332">La PC pide. El nodo decide.</text>
         </svg>
       </div>
     </div>

@@ -398,6 +398,87 @@
     });
   }
 
+  /* ---------- motor de escenas: un solo rAF ---------- */
+  const scenes = [];
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let raf = 0;
+
+  function start() {
+    if (raf || reduced || !scenes.length) return;
+    const t0 = performance.now();
+    const tick = now => {
+      const t = now - t0;
+      for (let i = 0; i < scenes.length; i++) scenes[i](t);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+  }
+
+  function setText(el, v) {
+    if (el && el.textContent !== v) el.textContent = v;
+  }
+
+  /* ---------- hero: teaser de 13 s ---------- */
+  const hero = document.getElementById("hero");
+  if (hero) {
+    const g = id => document.getElementById(id);
+    const link = g("heroLink"), pkt = g("heroPkt"), dot = g("heroDot");
+    const stepEl = g("heroStep"), valEl = g("heroVal"), capEl = g("heroCap");
+    const pcEl = hero.querySelector(".pc");
+    const len = link.getTotalLength();
+
+    const BEATS = [
+      [0, "PEDIDO", "La PC pide. El nodo decide."],
+      [2600, "FIRMA", "Tarea firmada: alcance y vencimiento."],
+      [5000, "USB", "USB si está cerca; red si no."],
+      [7200, "MIDIENDO", "El nodo muestrea cada 5 s, sin la PC."],
+      [10800, "SINCRONIZA", "Vuelve la PC: entrega la serie."]
+    ];
+    const LOOP = 13400;
+
+    const heroTick = t => {
+      const p = t % LOOP;
+      let beat = BEATS[0];
+      for (let i = 0; i < BEATS.length; i++) if (p >= BEATS[i][0]) beat = BEATS[i];
+      setText(stepEl, beat[1]);
+      setText(capEl, beat[2]);
+
+      const temp = p < 7200 ? null : p < 10800 ? 68 + (p - 7200) * 16 / 3600 : 84;
+      setText(valEl, temp === null ? "—" : Math.round(temp) + " °C");
+      const hot = temp !== null && temp >= 82;
+      if (valEl) valEl.classList.toggle("alert", hot);
+      if (dot) dot.style.fill = hot ? "var(--risk)" : "";
+
+      let d = -1;
+      if (p < 2600) d = p / 2600 * len;
+      else if (p > 10800 && p < 13200) d = len * (1 - (p - 10800) / 2400);
+      if (pkt) {
+        pkt.style.opacity = d < 0 ? "0" : "1";
+        if (d >= 0) {
+          const pt = link.getPointAtLength(d);
+          pkt.setAttribute("cx", pt.x);
+          pkt.setAttribute("cy", pt.y);
+        }
+      }
+      if (pcEl) pcEl.classList.toggle("off", p > 8200 && p < 10600);
+    };
+
+    if (reduced) heroTick(7200);
+    else {
+      scenes.push(heroTick);
+      start();
+    }
+  }
+
+  /* ---------- CTA del hero ---------- */
+  const btnFlujo = document.getElementById("btnFlujo");
+  if (btnFlujo) {
+    btnFlujo.addEventListener("click", () => {
+      const target = document.getElementById("flujo");
+      if (target) target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+    });
+  }
+
   document.addEventListener("keydown", e => {
     if (e.key === "Escape" && panel.classList.contains("open")) {
       e.preventDefault();

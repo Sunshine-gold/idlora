@@ -422,11 +422,45 @@ button:active, .btn:active { transform: translateY(1px); }
   color: var(--ink-2);
 }
 
-/* ---------------- hero (provisional) ---------------- */
+/* ---------------- hero (escenario vivo) ---------------- */
+
+.hero-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+
+.stage { display: flex; justify-content: center; }
+.stage-svg { width: 100%; max-width: 380px; height: auto; }
+.stage-svg text { font-family: var(--mono); }
+
+.frame { fill: none; stroke: var(--line); }
+.tick { stroke: var(--line-hi); stroke-width: 1.2; }
+.hair { stroke: var(--line); stroke-width: 1; }
+.box, .body { fill: var(--surface-1); stroke: var(--line-hi); stroke-width: 1.2; }
+.glass { fill: #07090c; stroke: var(--line); }
+.blip { stroke: var(--data); stroke-width: 1.4; opacity: .55; }
+.link { fill: none; stroke: var(--line-hi); stroke-width: 1.2; stroke-dasharray: 3 6; }
+.pkt { fill: var(--accent); }
+.dot { fill: var(--accent); transition: fill .3s var(--ease); }
+
+.cap { fill: var(--ink-2); font-size: 8px; letter-spacing: .16em; text-anchor: middle; }
+.lbl { fill: var(--ink-2); font-size: 7px; letter-spacing: .2em; }
+.lbl2 { fill: var(--ink-3); font-size: 7px; letter-spacing: .12em; text-anchor: middle; }
+.stepname { fill: var(--ink-1); font-size: 11px; letter-spacing: .14em; text-anchor: middle; font-weight: 600; }
+.val {
+  fill: var(--accent);
+  font-size: 17px;
+  text-anchor: middle;
+  font-variant-numeric: tabular-nums;
+  transition: fill .3s var(--ease);
+}
+.val.alert { fill: var(--risk); }
+.mods rect { fill: var(--surface-2); stroke: var(--line); }
+.mods text { fill: var(--ink-3); font-size: 6px; letter-spacing: .06em; text-anchor: middle; }
+
+.pc { transition: opacity .7s var(--ease); }
+.pc.off { opacity: .3; }
 
 .hero {
   display: grid;
-  grid-template-columns: 1.15fr .85fr;
+  grid-template-columns: 1.1fr .9fr;
   gap: 48px;
   align-items: center;
   margin-bottom: 56px;
@@ -441,9 +475,6 @@ button:active, .btn:active { transform: translateY(1px); }
   padding-left: 16px;
   margin-top: 28px;
 }
-
-.phone-art { display: flex; justify-content: center; }
-.phone-art svg { filter: saturate(.45) brightness(.85); max-width: 100%; height: auto; }
 
 /* ---------------- architecture ---------------- */
 
@@ -974,7 +1005,7 @@ footer.site {
   .card, .step, .phase, pre, table, .table-wrap { break-inside: avoid; }
 
   .card, .node, .step, .phase, .table-wrap, pre, .callout, .arch, .layer,
-  .chips, .phone-art, .timeline, .kv {
+  .chips, .timeline, .kv {
     background: #fff !important;
     border-color: #ccc !important;
     box-shadow: none !important;
